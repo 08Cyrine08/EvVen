@@ -15,8 +15,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_16_121119) do
   enable_extension "plpgsql"
 
   create_table "bookings", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "venue_id", null: false
+    t.integer "user_id"
+    t.integer "venue_id"
     t.date "booking_start_date"
     t.date "booking_end_date"
     t.integer "amount_guests"
@@ -25,7 +25,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_16_121119) do
   end
 
   create_table "reviews", force: :cascade do |t|
-    t.integer "venue_id", null: false
+    t.integer "venue_id"
     t.string "title"
     t.text "text"
     t.integer "rating"
@@ -55,7 +55,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_16_121119) do
     t.decimal "price"
     t.text "availability_dates"
     t.string "tags"
-    t.integer "user_id", null: false
+    t.integer "user_id"
     t.string "picture"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
