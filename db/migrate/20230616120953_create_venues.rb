@@ -5,7 +5,7 @@ class CreateVenues < ActiveRecord::Migration[7.0]
       t.string :location
       t.text :description
       t.decimal :price
-      t.text :availability_dates
+      t.date :availability_dates
       t.string :tags
       t.integer :user_id
       t.string :picture

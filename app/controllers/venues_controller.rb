@@ -12,11 +12,13 @@ class VenuesController < ApplicationController
   end
 
   def create
+    @user = current_user
     @venue = Venue.new(venue_params)
+    @venue.user = @user
     if @venue.save
       redirect_to venue_path(@venue), notice: "Venue created successfully."
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
