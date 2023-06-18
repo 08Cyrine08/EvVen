@@ -1,6 +1,10 @@
-<h1><%= @venue.name %></h1>
+<div class="container">
+  <h1><%= @venue.name %></h1>
 
-<p><%= link_to "Edit", edit_venue_path, class: "nav-link"%></p> <p><%= link_to "Delete",
-  venue_path(@venue),
-  data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
-%></p>
+  <p>Located in: <%= @venue.location %></p>
+
+  <p><%= link_to "Edit", edit_venue_path, class: "nav-link"%></p> <p><%= link_to "Delete",
+    venue_path(@venue),
+    data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
+  %></p>
+</div>
