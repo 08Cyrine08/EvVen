@@ -12,9 +12,13 @@ class BookingsController < ApplicationController
   end
 
   def create
+    @user = current_user
     @booking = Booking.new(booking_params)
+    @venue = Venue.find(params[:venue_id])
+    @booking.user = @user
+    @booking.venue = @venue
     if @booking.save
-      redirect_to booking_path(@booking), notice: "Booking request created successfully."
+      redirect_to root_path, notice: "Booking request created successfully."
     else
       render :new
     end
