@@ -6,8 +6,11 @@ Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   resources :venues do
     resources :reviews, only: %i[new create]
+    resources :bookings, only: %i[new create]
+    resources :availabilities, only: %i[index create destroy]
   end
+
   resources :reviews, only: :destroy
-  end
-  # Defines the root path route ("/")
-  # root "articles#index"
+end
+# Defines the root path route ("/")
+# root "articles#index"
