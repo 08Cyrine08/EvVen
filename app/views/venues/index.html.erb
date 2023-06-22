@@ -1,15 +1,16 @@
-<div class="d-flex container">
-  <div class="flex-column mb-3">
+<div class="container">
+  <h1 class="mt-4">Clubs in <%= @city %>, <%= @date %></h1>
+
+  <div class="row row-cols-1 row-cols-md-3">
     <% @venues.each do |venue| %>
-      <div class="card-product">
-        <img style="width: 150px; height: 130px" src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
-        <div class="card-product-infos">
-          <h2><%=venue.name %></h2>
-          <p><%= venue.location %></p>
-          <%= link_to "Details", venue_path(venue), class:"text-decoration-none, btn btn-secondary " %>
-          <%= link_to "Add venue", new_venue_path, class:"text-decoration-none, btn btn-secondary " %>
+      <div class="col mb-4">
+        <div class="card h-100">
+          <div class="card-body">
+            <h5 class="card-title"><%= venue.name %></h5>
+            <p class="card-text"><%= venue.location %></p>
+          </div>
         </div>
-      </div> <br>
+      </div>
     <% end %>
   </div>
 </div>
