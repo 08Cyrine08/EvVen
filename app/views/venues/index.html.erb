@@ -6,7 +6,8 @@
         <div class="card-product-infos">
           <h2><%=venue.name %></h2>
           <p><%= venue.location %></p>
-          <%= link_to "Details", venue_path(venue), class:"text-decoration none, btn btn-secondary" %>
+          <%= link_to "Details", venue_path(venue), class:"text-decoration-none, btn btn-secondary " %>
+          <%= link_to "Add venue", new_venue_path, class:"text-decoration-none, btn btn-secondary " %>
         </div>
       </div> <br>
     <% end %>
