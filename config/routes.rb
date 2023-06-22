@@ -7,8 +7,10 @@ Rails.application.routes.draw do
   resources :venues do
     resources :reviews, only: %i[new create]
     resources :bookings, only: %i[new create]
+    resources :availabilities, only: %i[index create destroy]
   end
+
   resources :reviews, only: :destroy
-  end
-  # Defines the root path route ("/")
-  # root "articles#index"
+end
+# Defines the root path route ("/")
+# root "articles#index"
