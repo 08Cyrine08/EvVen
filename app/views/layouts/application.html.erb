@@ -9,11 +9,42 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+    <script src="https://unpkg.com/scrollreveal@4.0.0/dist/scrollreveal.min.js"></script>
+    <style>
+      #navbar {
+        padding: 60px 10px;
+        width: 100%;
+        top: 0;
+        overflow: hidden;
+        justify-content: space-between;
+        background: #230344;
+        opacity: 0.8;
+        transition: 0.4s;
+        position: sticky;
+      }
+
+      @media screen and (max-width: 580px) {
+        #navbar {
+        padding: 20px 10px !important;
+        }
+      }
+    </style>
   </head>
 
   <body>
-    <%= render "shared/navbar" %>
-    <%= render "shared/flashes" %>
+    <%= render "shared/navbar" if !current_page?(root_path) %>
+    <script>
+      window.onscroll = function() {scrollFunction()};
+
+      function scrollFunction() {
+        if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
+          document.getElementById("navbar").style.padding = "10px 10px";
+        } else {
+          document.getElementById("navbar").style.padding = "80px 10px";
+        }
+      }
+     </script>
+    <%= render "shared/flashes"%>
     <%= yield %>
   </body>
 </html>
