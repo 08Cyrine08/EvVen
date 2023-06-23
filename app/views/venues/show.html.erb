@@ -19,6 +19,8 @@
   <span style="z-index: 1;"><%= @venue.description %></span>
   </p>
 
+
+
   <div data-booking-form-target="form" class="position-absolute end-0 p-4 d-none" style="width: 400px; height: 450px; background-color: white; z-index: 2;">
     <div class="position-relative" style="width: 350px; height: 30px;">
     <span class="position-absolute end-0" data-booking-form-target="closeform" data-action="click->booking-form#closeForm"><i class="fa-solid fa-circle-xmark" style="color: #0d0d0d; cursor: pointer;"></i></span>
@@ -42,8 +44,10 @@
 
   <p class="position-absolute bottom-0 end-0 d-flex justify-content-around" style="width: 300px; height: 30px;">
 
+
+
   <%= link_to "Chat with owner",
-      "#", class: "btn btn-secondary pb-4"
+      "/chatrooms/1", class: "btn btn-secondary pb-4"
     %>
 
     <%= link_to "Book now!", "#", class: "btn btn-dark pb-4",
