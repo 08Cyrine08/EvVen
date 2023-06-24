@@ -3,12 +3,16 @@
   "private": "true",
   "dependencies": {
     "@hotwired/stimulus": "^3.2.1",
+    "@hotwired/stimulus-webpack-helpers": "^1.0.1",
     "@hotwired/turbo-rails": "^7.3.0",
     "@popperjs/core": "^2.11.8",
     "@rails/webpacker": "5.4.4",
     "bootstrap": "^5.3.0",
-    "webpack": "^4.46.0",
-    "webpack-cli": "^3.3.12"
+
+    "scrollreveal": "^4.0.9",
+
+    "webpack": "^5.85.0",
+    "webpack-cli": "^5.1.1"
   },
   "scripts": {
     "build": "webpack --config webpack.config.js"

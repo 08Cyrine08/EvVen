@@ -1,10 +1,57 @@
-<div class="container">
-  <h1><%= @venue.name %></h1>
 
-  <p>Located in: <%= @venue.location %></p>
+<div data-controller="booking-form" class="container position-relative mt-5" style="height: 640px; z-index: 1;" >
+  <h1 style="color: #9CD7F2;"><%= @venue.name %></h1>
+  <p style="color: #9CD7F2;"><strong><%= @venue.location %></strong></p>
 
-  <p><%= link_to "Edit", edit_venue_path, class: "nav-link"%></p> <p><%= link_to "Delete",
+
+  <%= link_to '🖊️', edit_venue_path, class: "text-decoration-none pb-4"%>
+
+  <%= link_to '🗑️',
     venue_path(@venue),
+    class: "text-decoration-none pb-4",
     data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
-  %></p>
+
+  %>
+
+
+
+  <p class="position-absolute top-50 start-50 d-flex flex-column" style="color: #005F89;">
+  <span class="mb-2">Available during: <strong><%= @venue.availability_dates %></strong></span>
+  <span style="z-index: 1;"><%= @venue.description %></span>
+  </p>
+
+  <div data-booking-form-target="form" class="position-absolute end-0 p-4 d-none" style="width: 400px; height: 450px; background-color: white; z-index: 2;">
+    <div class="position-relative" style="width: 350px; height: 30px;">
+    <span class="position-absolute end-0" data-booking-form-target="closeform" data-action="click->booking-form#closeForm"><i class="fa-solid fa-circle-xmark" style="color: #0d0d0d; cursor: pointer;"></i></span>
+    </div>
+
+    <h2 class="text-center">Booking form</h2>
+    <%= simple_form_for [@venue, @booking] do |f| %>
+    <%= f.input :booking_start_date, as: :date, :label =>"Choose start date", html5: true%>
+    <%= f.input :booking_end_date, as: :date, :label =>"Choose end date", html5: true%>
+    <%= f.input :amount_guests, :label =>"# of Guests", html5: true%>
+    <%= f.submit 'Send booking request', :action => :create, :method => :post, class:"btn btn btn-dark text center w-100 text-white fw-bold mt-4" %>
+    <% end %>
+  </div>
+
+
+  <p class="position-absolute bottom-0 start-0" style="width: 200px; height: 30px; font-size:30px;">
+
+    <a href="/venues" class="pt-1" style="width: 30px; height: 30px; color: black;"><i class="fa-solid fa-arrow-left"></i></a>
+
+  </p>
+
+  <p class="position-absolute bottom-0 end-0 d-flex justify-content-around" style="width: 300px; height: 30px;">
+
+  <%= link_to "Chat with owner",
+      "#", class: "btn btn-secondary pb-4"
+    %>
+
+    <%= link_to "Book now!", "#", class: "btn btn-dark pb-4",
+      data: {booking_form_target: "openform",
+      action: "click->booking-form#openForm"} %>
+
+
+  </p>
+
 </div>

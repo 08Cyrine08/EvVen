@@ -1,2 +1,44 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div>
+<img class="logo vw-100 vh-100" src="https://sun9-74.userapi.com/impg/fA6T8J1Nu_08hshsG56r9KnqqMFydlIfh0QDeA/2mqgF3jtV24.jpg?size=2560x1683&quality=95&sign=da5f7246ed8ecd2ca366ba90112a703b&type=album" alt="">
+  <div class="transition vw-100 vh-100">
+<a class="button text-decoration-none text-white" href="<%=venues_path%>">ENTER</a>    <div class="d-flex flex-row">
+      <div class="p-2">
+        <p class="text-1">Connecting you to the perfect venue, every time, everywhere.</p>
+      </div>
+    </div>
+    <div class="d-flex flex-row-reverse">
+      <div class="p-2"><img class="pic-1" src="https://images.squarespace-cdn.com/content/v1/5c53611a0cf57d7ce300be61/1644623533162-TEJHCRQWOWR01198J2PW/DSC03272-min.jpg" alt=""></div>
+    </div>
+  </div>
+  <div class="transition vw-100 vh-100">
+  <div class="d-flex flex-row-reverse">
+      <div class="p-2">
+        <p class="text-2">Find a place to celebrate life's most precious moments!</p>
+      </div>
+    </div>
+    <div class="d-flex flex-row">
+      <div class="p-2"><img class="pic-2" src="https://st.depositphotos.com/1594308/3527/i/950/depositphotos_35271815-stock-photo-friends-having-fun-with-cocktails.jpg" alt=""></div>
+    </div>
+    <script>
+          ScrollReveal({ distance: '60px' });
+          ScrollReveal().reveal('.text-1', {
+             delay: 500,
+             origin: 'right',
+             duration: 2000
+             });
+          ScrollReveal().reveal('.pic-1',{
+            delay: 550,
+            origin: 'left',
+            delay: 500
+            });
+          ScrollReveal().reveal('.text-2', {
+             origin: 'right',
+             duration: 2000
+             });
+          ScrollReveal().reveal('.pic-2',{
+            delay: 550,
+            origin: 'left'
+            });
+	      </script>
+  </div>
+</div>
