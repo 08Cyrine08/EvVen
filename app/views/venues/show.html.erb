@@ -15,6 +15,47 @@
 
 
 
+    <div id="carouselExampleControls" data-booking-form-target="carousel" class="carousel slide" style="width: 500px; height: 500px;" data-bs-ride="carousel">
+      <div class="carousel-inner p-5 mt-5 shadow p-3 mb-5 bg-body rounded" style="width: 500px; height: 400px;">
+        <% if @reviews.size >= 1 %>
+        <% @reviews.each_with_index do |review, index| %>
+        <div class="carousel-item <%= index.zero? ? 'active' : '' %>">
+          <div style="width: 500px; height: 400px;"><h4 class="mb-5"><%=  "⭐" * review.rating%></h4><p class="m"><%= review.text %></p></div>
+        </div>
+        <% end %>
+        <% else %>
+        <div class="carousel-item active">
+          <div class="text-center p-5" style="height: 300px; background-color: black;">
+            <span class="" style="color: white;">No reviews on this venue.</span>
+          </div>
+        </div>
+        <% end %>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true">◀️</span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true">▶️</span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+
+
+  <div data-booking-form-target="review" class="position-absolute start-0 p-4 d-none" style="width: 400px; height: 450px; background-color: white; z-index: 2;">
+    <div class="position-relative" style="width: 350px; height: 30px;">
+    <span class="position-absolute end-0" data-booking-form-target="closereview" data-action="click->booking-form#closeReview"><i class="fa-solid fa-circle-xmark" style="color: #0d0d0d; cursor: pointer;"></i></span>
+    </div>
+
+    <h2 class="text-center">Give us your feedback, reviews are anonymous</h2>
+     <%= simple_form_for [@venue, @review] do |f| %>
+    <%= f.input :text, :label =>"Review", html5: true%>
+    <%= f.input :rating, :label =>"Rating", html5: true%>
+    <%= f.submit 'Add review', :action => :create, :method => :post, class:"btn btn btn-dark text center w-100 text-white fw-bold mt-4" %>
+    <% end %>
+  </div>
+
+
   <p class="position-absolute top-50 start-50 d-flex flex-column" style="color: #005F89;">
   <span class="mb-2">Available during: <strong><%= @venue.availability_dates %></strong></span>
   <span style="z-index: 1;"><%= @venue.description %></span>
@@ -41,7 +82,11 @@
 
   </p>
 
-  <p class="position-absolute bottom-0 end-0 d-flex justify-content-around" style="width: 300px; height: 30px;">
+  <p class="position-absolute bottom-0 end-0 d-flex justify-content-around" style="width: 500px; height: 30px;">
+
+  <%= link_to "Leave review", "#", class: "btn btn-dark pb-4",
+      data: {booking_form_target: "openreview",
+      action: "click->booking-form#openReview"} %>
 
   <%= link_to "Chat with owner",
       "#", class: "btn btn-secondary pb-4"
