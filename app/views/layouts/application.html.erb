@@ -12,15 +12,28 @@
     <script src="https://unpkg.com/scrollreveal@4.0.0/dist/scrollreveal.min.js"></script>
     <style>
       #navbar {
-        padding: 60px 10px;
+        padding: 20px 10px;
         width: 100%;
         top: 0;
-        overflow: hidden;
+        /* overflow: hidden; */
         justify-content: space-between;
-        background: #230344;
+        background: #140057;
         opacity: 0.8;
         transition: 0.4s;
         position: sticky;
+      }
+
+      #logo {
+        transition: 0.4s;
+        width: 80px;
+        height: 80px;
+      }
+
+      #nav {
+        transition: 0.4s;
+        position: absolute;
+        top: 40px;
+        right: 15px;
       }
 
       @media screen and (max-width: 580px) {
@@ -33,20 +46,33 @@
 
 
   <body>
-    <%= render "shared/navbar" if !current_page?(root_path) %>
-    <script>
-      window.onscroll = function() {scrollFunction()};
+    <div id="pages-container">
+      <main>
+        <%= render "shared/navbar" if !current_page?(root_path) %>
+        <script>
+          window.onscroll = function() {scrollFunction()};
 
-      function scrollFunction() {
-        if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
-          document.getElementById("navbar").style.padding = "10px 10px";
-        } else {
-          document.getElementById("navbar").style.padding = "80px 10px";
-        }
-      }
-     </script>
-    <%= render "shared/flashes"%>
+          function scrollFunction() {
+            if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
+              document.getElementById("navbar").style.padding = "10px 0px";
+              document.getElementById("logo").style.height = "50px";
+              document.getElementById("logo").style.width = "50px";
+              document.getElementById("nav").style.top = "20px";
 
-    <%= yield %>
+
+            } else {
+              document.getElementById("navbar").style.padding = "20px 10px";
+              document.getElementById("logo").style.height = "80px"
+              document.getElementById("logo").style.width = "80px"
+              document.getElementById("nav").style.top = "40px";
+            }
+          }
+        </script>
+        <%= render "shared/flashes"%>
+
+        <%= yield %>
+      </main>
+      <%= render "shared/footer" if !current_page?(root_path) %>
+    </div>
   </body>
 </html>
