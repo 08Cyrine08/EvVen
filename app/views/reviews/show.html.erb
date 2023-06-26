@@ -1,0 +1,7 @@
+<div class="container position-relative" style="height: 500px;">
+  <h1 class="m-5"><%=  "⭐" * @review.rating%></h1>
+  <p><%= @review.text %></p>
+
+  <a href="/venues/<%= @review.venue_id %>" class="position-absolute bottom-0 start-0" style="width: 30px; height: 30px; color: black;"><i class="fa-solid fa-arrow-left" ></i></a>
+
+</div>
