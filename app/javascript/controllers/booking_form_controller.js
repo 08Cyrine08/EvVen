@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="booking-form"
 export default class extends Controller {
-  static targets = ["openform", "closeform", "form", "closereview", "openreview", "review", "carousel"];
+  static targets = ["openform", "closeform", "form", "closereview", "openreview", "review"];
 
   connect() {
     console.log("connected")
@@ -29,5 +29,6 @@ export default class extends Controller {
     this.reviewTarget.classList.add("d-none");
 
   }
+
 
 }
