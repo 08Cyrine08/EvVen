@@ -25,3 +25,5 @@ environment.config.delete('node.tls')
 environment.config.delete('node.child_process')
 
 environment.config.merge(customConfig);
+
+// webpack solution
