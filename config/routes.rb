@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   root to: "pages#home"
+  get "profile", to: "pages#profile"
 
   resources :reviews
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
@@ -11,6 +12,7 @@ Rails.application.routes.draw do
   end
 
   resources :reviews, only: :destroy
+  resources :details, only: %i[new create edit update destroy]
 end
 # Defines the root path route ("/")
 # root "articles#index"

@@ -1,7 +1,8 @@
 .navbar-lewagon {
   justify-content: space-between;
-  background: #230344;
+  background: #140057;
   opacity: 0.8;
+  position: relative;
 }
 
 .navbar-lewagon .navbar-collapse {
@@ -10,8 +11,28 @@
 
 .navbar-lewagon .navbar-brand img {
   width: 40px;
+  padding: 0;
 }
 
 .navbar-nav .nav-item .nav-link {
-  color: white;
+  font-family: "IBM Plex Mono";
+  color: #9cd7f2;
+  font-style: italic;
+  font-size: large;
+}
+
+.profile {
+  color: #9cd7f2;
+  font-family: "IBM Plex Mono";
+  font-style: italic;
+  font-size: large;
+}
+
+.navbar-nav {
+  display: inline-flex;
+  align-items: center;
+}
+
+.dropdown-menu {
+  background-color: #9cd7f2;
 }
