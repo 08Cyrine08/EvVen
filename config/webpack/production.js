@@ -1,10 +1,10 @@
 process.env.NODE_ENV = process.env.NODE_ENV || 'production'
 
-// const environment = require('./environment')
-const { environment } = require('@rails/webpacker')
+const environment = require('./environment')
+// const { environment } = require('@rails/webpacker')
 
-// module.exports = environment.toWebpackConfig()
-module.exports = environment
+module.exports = environment.toWebpackConfig()
+// module.exports = environment
 
 const customConfig = {
 resolve: {
@@ -25,3 +25,5 @@ environment.config.delete('node.tls')
 environment.config.delete('node.child_process')
 
 environment.config.merge(customConfig);
+
+// webpack solution
