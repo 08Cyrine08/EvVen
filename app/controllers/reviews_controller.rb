@@ -3,6 +3,10 @@ class ReviewsController < ApplicationController
     @review = Review.new
   end
 
+  def show
+    @review = Review.find(params[:id])
+  end
+
   def create
     @review = Review.new(review_params)
     @venue = Venue.find(params[:venue_id])
@@ -17,6 +21,7 @@ class ReviewsController < ApplicationController
   def destroy
     @review = Review.find(params[:id])
     @review.destroy
+    redirect_to "/venues/#{@review.venue_id}"
   end
 
   private
