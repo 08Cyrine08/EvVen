@@ -1,8 +1,8 @@
 <% rat = [] %>
 <% size = @venue.reviews.size %>
 
-<div >
-  <div data-controller="booking-form" class="container position-relative mt-5" style="height: 640px; z-index: 1;">
+<div data-controller="booking-form">
+  <div  class="container position-relative mt-5" style="height: 640px; z-index: 1;">
   <h1 style="color: black;"><%= @venue.name %></h1>
     <% if @venue.reviews %>
     <% @venue.reviews.each do |rev| %>
@@ -120,11 +120,19 @@
     <div class="row">
       <% @venue.reviews.each do |review| %>
 
+        <div class="col-4 p-5 shadow p-3 mb-5 bg-body rounded m-2 position-relative d-none"  style="height: 300px; width: 380px; border-radius: 8px;">
+
+              <p class="p-3" style="height: 150px; "><%= review.text %></p>
+            <button class="hiderev position-absolute top-0 end-0 btn btn-dark">X</button>
+
+        </div>
+
         <div class="col-4 p-5 shadow p-3 mb-5 bg-body rounded m-2 position-relative"  style="height: 300px; width: 380px; border-radius: 8px;">
 
             <h4 class="mb-2"><%=  "⭐" * review.rating%></h4>
             <p class="p-3" style="height: 150px; "><%= review.text.truncate(90) %></p>
-            <%= link_to 'View review', "/reviews/#{review.id}", class: "text-decoration-none pb-4 position-absolute bottom-0 start-50"%>
+            <button class="viewrev btn btn-dark">View review</button>
+
             <%= link_to '🗑️',
               "/reviews/#{review.id}",
               class: "text-decoration-none pb-4 position-absolute bottom-0 end-0 p-5",
@@ -137,3 +145,21 @@
   </div>
   <%end%>
 </div>
+
+<script>
+
+  document.querySelectorAll(".viewrev").forEach( (e) => {
+    e.addEventListener("click", () => {
+      e.parentElement.classList.add("d-none");
+      e.parentElement.previousElementSibling.classList.remove("d-none");
+      e.parentElement.previousElementSibling.style.overflow = "auto";
+    })
+  })
+
+  document.querySelectorAll(".hiderev").forEach( (e) => {
+    e.addEventListener("click", () => {
+      e.parentElement.classList.add("d-none");
+      e.parentElement.nextElementSibling.classList.remove("d-none");
+    })
+  })
+</script>

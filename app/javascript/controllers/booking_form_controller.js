@@ -22,13 +22,11 @@ export default class extends Controller {
   openReview(){
     this.reviewTarget.classList.remove("d-none");
 
-
   }
 
   closeReview(){
     this.reviewTarget.classList.add("d-none");
 
   }
-
 
 }
