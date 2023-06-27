@@ -4,7 +4,7 @@
 <div data-controller="booking-form">
   <div  class="container position-relative mt-5" style="height: 640px; z-index: 1;">
   <h1 style="color: black;"><%= @venue.name %></h1>
-    <% if @venue.reviews %>
+    <% if @venue.reviews.size > 0 %>
     <% @venue.reviews.each do |rev| %>
     <% rat << rev.rating %>
     <%end%>
@@ -113,7 +113,7 @@
   </p>
   </div>
 
-  <% if @venue.reviews %>
+  <% if @venue.reviews.size > 0 %>
   <div class="container my-5 me-3">
     <h1><%= @venue.reviews.size %> reviews for <%= @venue.name %></h1>
 
