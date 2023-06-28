@@ -15,15 +15,15 @@ class VenuesController < ApplicationController
   end
 
   def new
-    authorize @venue
     @venue = Venue.new
+    authorize @venue
   end
 
   def create
-    authorize @venue
     @user = current_user
     @venue = Venue.new(venue_params)
     @venue.user = @user
+    authorize @venue
     if @venue.save
       redirect_to venue_path(@venue), notice: "Venue created successfully."
     else
