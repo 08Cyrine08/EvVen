@@ -1,6 +1,7 @@
 <div class="container">
   <h1 class="mt-4">Clubs in <%= @city %>, <%= @date %></h1>
 
+<%= link_to "New venue", new_venue_path if policy(Venue).new? %>
   <div class="row row-cols-1 row-cols-md-3">
     <% @venues.each do |venue| %>
       <div class="col mb-4">

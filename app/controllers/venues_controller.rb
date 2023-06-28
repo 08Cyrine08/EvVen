@@ -4,19 +4,23 @@ class VenuesController < ApplicationController
 
   def index
     @venues = Venue.all
+    @venues = policy_scope(Venue)
   end
 
   def show
+    authorize @venue
     @booking = Booking.new
     @review =  Review.new
     @reviews = Review.all
   end
 
   def new
+    authorize @venue
     @venue = Venue.new
   end
 
   def create
+    authorize @venue
     @user = current_user
     @venue = Venue.new(venue_params)
     @venue.user = @user
@@ -28,9 +32,11 @@ class VenuesController < ApplicationController
   end
 
   def edit
+    authorize @venue
   end
 
   def update
+    authorize @venue
     if @venue.update(venue_params)
       redirect_to venue_path(@venue), notice: "Venue updated successfully."
     else
@@ -39,6 +45,7 @@ class VenuesController < ApplicationController
   end
 
   def destroy
+    authorize @venue
     @venue.destroy
     redirect_to venues_path, notice: "Venue deleted successfully.", status: :see_other
   end
