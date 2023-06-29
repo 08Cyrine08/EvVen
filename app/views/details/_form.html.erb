@@ -1,0 +1,4 @@
+<%= simple_form_for(@detail) do |f| %>
+ <%= f.input :content, label: false, as: :text, placeholder: "Tell something about you!", :input_html => { class: 'detail', :cols => 60, :rows => 10 } %>
+<%= f.submit "Add details!", class:"btn, detail-btn" %>
+<% end %>

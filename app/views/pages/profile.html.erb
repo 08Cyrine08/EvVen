@@ -1,3 +1,25 @@
 <div class="container">
-<h1>Hello, <%= @user.first_name %></h1>
+  <div class="d-flex justify-content-around">
+    <h1>Hello, <%= @user.first_name %></h1>
+    <div class="avatar-profile">
+      <% if current_user.photo.key %>
+        <%= cl_image_tag current_user.photo.key, class: "avatar-large", alt: "dropdown menu" %>
+      <% else %>
+        <img src="https://res.cloudinary.com/dwouepnpu/image/upload/v1685980904/4378936_umm3gk.png", class= "avatar-large", alt= "dropdown menu">
+     <% end %>
+    </div>
+  </div> <br>
+  <div class="user-details">
+  <h2>My info</h2>
+  <p>My e-mail:   <%= @user.email %></p><br>
+  <h3>About me</h3>
+  <% if @user.detail.present? %>
+    <div class=" d-flex details-box">
+    <%= link_to "🗑️", detail_path(@detail), class:"delete-detail", data: {turbo_method: :delete, turbo_confirm: "Clear details field?"} %>
+    <p><%=@user.detail.content %></p>
+    </div>
+  <% else %>
+     <%= render "details/form", detail: @detail %>
+  <% end %>
+  </div>
 </div>

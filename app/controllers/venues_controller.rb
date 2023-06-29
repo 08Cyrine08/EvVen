@@ -3,7 +3,11 @@ class VenuesController < ApplicationController
   before_action :set_params, only: %i[show edit update destroy]
 
   def index
+    if params[:query].present?
+      @venues = Venue.search_by_name_location_description(params[:query])
+    else
     @venues = Venue.all
+    end
 
     @answer = 'Welcome to EvVen chatbot, type "help" or "assistance" to start'
 
