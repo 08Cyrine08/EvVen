@@ -6,5 +6,10 @@ class PagesController < ApplicationController
 
   def profile
     @user = current_user
+    if @user.detail.present?
+      @detail = @user.detail
+    else
+      @detail = Detail.new
+    end
   end
 end
