@@ -1,10 +1,12 @@
+<div class="container shadow p-3 mb-5 mt-5 rounded p-5" style="width: 500px;">
 <%= simple_form_for(@venue) do |f| %>
-  <%= f.input :name %>
-  <%= f.input :location %>
-  <%= f.input :description %>
-  <%= f.input :price %>
-  <%= f.input :availability_dates %>
-  <%= f.input :tags %>
-  <%= f.input :photos, as: :file, input_html: {multiple: true} %>
-  <%= f.submit %>
+  <%= f.input :name, input_html: { class: "bg-transparent border border-primary" } %>
+  <%= f.input :location, input_html: { class: "bg-transparent border border-primary" } %>
+  <%= f.input :description, input_html: { class: "bg-transparent border border-primary" } %>
+  <%= f.input :price, input_html: { class: "bg-transparent border border-primary" } %>
+  <%= f.input :availability_dates, input_html: { class: "bg-transparent border border-primary" } %>
+  <%= f.input :tags, input_html: { class: "bg-transparent border border-primary" } %>
+  <%= f.input :photos, as: :file, input_html: { class: "bg-transparent border border-primary", multiple: true } %>
+  <%= f.submit "Create", class: "btn btn-primary w-100"%>
 <% end %>
+</div>
