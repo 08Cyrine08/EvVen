@@ -1,18 +1,42 @@
+<% rat = [] %>
+<% size = @venue.reviews.size %>
 
-<div  >
-  <div data-controller="booking-form" class="container position-relative mt-5" style="height: 640px; z-index: 1;">
-  <h1 style="color: #9CD7F2;"><%= @venue.name %></h1>
-  <p style="color: #9CD7F2;"><strong><%= @venue.location %></strong></p>
+<div data-controller="booking-form">
+  <div  class="container position-relative mt-5" style="height: 640px; z-index: 1;">
+  <h1 style="color: black;"><%= @venue.name %></h1>
+    <% if @venue.reviews.size > 0 %>
+    <% @venue.reviews.each do |rev| %>
+    <% rat << rev.rating %>
+    <%end%>
+    <p><%= "⭐" * (rat.sum / size) %></p>
+    <%end%>
 
+  <p style="color: black;"><strong><%= @venue.location %></strong></p>
 
-  <%= link_to '🖊️', edit_venue_path, class: "text-decoration-none pb-4"%>
+  <div class="mb-2">
+  <%= link_to '🖊️', edit_venue_path, class: "text-decoration-none pb-4 e"%>
 
   <%= link_to '🗑️',
     venue_path(@venue),
-    class: "text-decoration-none pb-4",
+    class: "text-decoration-none pb-4 d",
     data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
 
   %>
+  <button id="bookings-history-btn" class="" style="background-color: transparent; border: none; color: gray;">🗒️</button>
+  <span class="d-none" id="t">Booking History</span>
+  <span class="d-none" id="e">Edit venue</span>
+  <span class="d-none" id="d">Delete venue</span>
+  </div>
+
+
+  <div id="bookings-history" class="position-absolute start-0 p-5 d-none mb-5" style="width: 300px; height: 350px; background-color: white; z-index: 2; overflow: auto;">
+    <% @venue.bookings.each do |booking| %>
+      <h3>User #<%= booking.user_id %> has booked this venue </h3>
+      <p>From <%= booking.booking_start_date %></p>
+      <p>To <%= booking.booking_end_date %></p>
+      <p style="border-bottom: solid 1px gray;">For <%= booking.amount_guests %> people. </p>
+    <% end %>
+  </div>
 
 
   <div data-booking-form-target="review" class="position-absolute start-0 p-4 d-none" style="width: 400px; height: 450px; background-color: white; z-index: 2;">
@@ -28,9 +52,40 @@
     <% end %>
   </div>
 
+  <div class="container position-absolute start-50 top-0 " style="width: 600px; height: 300px;">
+    <% if @venue.photos.attached? %>
+        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-inner">
+            <% if @venue.photos.size >= 1 %>
+            <% @venue.photos.each_with_index do |photo, index| %>
+            <div class="carousel-item <%= index.zero? ? 'active' : '' %>" style="width: 600px; height: 300px; ">
+              <%= cl_image_tag photo.key, style: "width: 600px; height: 300px; object-fit: fit;"%>
+            </div>
+            <% end %>
+            <% else %>
+            <div class="carousel-item active">
+              <div class="text-center p-5" style="height: 300px; background-color: black;">
+                <span class="" style="color: white;">No photos available.</span>
+              </div>
+            </div>
+            <% end %>
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+            <span class="" aria-hidden="true">◀️</span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+            <span class="" aria-hidden="true">▶️</span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+      <%end%>
+    </div>
 
-  <p class="position-absolute top-50 start-50 d-flex flex-column" style="color: #005F89;">
+  <p class="position-absolute top-50 start-50 d-flex flex-column" style="color: black;">
   <span class="mb-2">Available during: <strong><%= @venue.availability_dates %></strong></span>
+  <span class="mb-2">From: 💲 <%= @venue.price %></span>
+
   <span style="z-index: 1;"><%= @venue.description %></span>
   </p>
 
@@ -58,31 +113,40 @@
 
   <p class="position-absolute bottom-0 end-0 d-flex justify-content-around" style="width: 500px; height: 30px;">
 
-  <%= link_to "Leave review", "#", class: "btn btn-dark pb-4",
-      data: {booking_form_target: "openreview",
-      action: "click->booking-form#openReview"} %>
+
+    <button class="btn btn-dark pb-4" data-booking-form-target="openreview" data-action="click->booking-form#openReview">Leave review</button>
 
   <%= link_to "Chat with owner",
       "#", class: "btn btn-secondary pb-4"
     %>
 
-    <%= link_to "Book now!", "#", class: "btn btn-dark pb-4",
-      data: {booking_form_target: "openform",
-      action: "click->booking-form#openForm"} %>
+    <button class="btn btn-dark pb-4" data-booking-form-target="openform" data-action="click->booking-form#openForm">Book now!</button>
+
 
 
   </p>
   </div>
 
+  <% if @venue.reviews.size > 0 %>
   <div class="container my-5 me-3">
+    <h1><%= @venue.reviews.size %> reviews for <%= @venue.name %></h1>
 
     <div class="row">
       <% @venue.reviews.each do |review| %>
+
+        <div class="col-4 p-5 shadow p-3 mb-5 bg-body rounded m-2 position-relative d-none"  style="height: 300px; width: 380px; border-radius: 8px;">
+
+              <p class="p-3" style="height: 150px; "><%= review.text %></p>
+            <button class="hiderev position-absolute top-0 end-0 btn btn-dark">X</button>
+
+        </div>
+
         <div class="col-4 p-5 shadow p-3 mb-5 bg-body rounded m-2 position-relative"  style="height: 300px; width: 380px; border-radius: 8px;">
 
             <h4 class="mb-2"><%=  "⭐" * review.rating%></h4>
-            <p class="p-3" style="overflow:hidden; height: 150px; "><%= review.text %></p>
-            <%= link_to 'View review', "/reviews/#{review.id}", class: "text-decoration-none pb-4 position-absolute bottom-0 start-50"%>
+            <p class="p-3" style="height: 150px; "><%= review.text.truncate(90) %></p>
+            <button class="viewrev btn btn-dark">View review</button>
+
             <%= link_to '🗑️',
               "/reviews/#{review.id}",
               class: "text-decoration-none pb-4 position-absolute bottom-0 end-0 p-5",
@@ -93,4 +157,52 @@
         <% end %>
     </div>
   </div>
+  <%end%>
 </div>
+
+<script>
+
+  document.querySelectorAll(".viewrev").forEach( (e) => {
+    e.addEventListener("click", () => {
+      e.parentElement.classList.add("d-none");
+      e.parentElement.previousElementSibling.classList.remove("d-none");
+      e.parentElement.previousElementSibling.style.overflow = "auto";
+    })
+  })
+
+  document.querySelectorAll(".hiderev").forEach( (e) => {
+    e.addEventListener("click", () => {
+      e.parentElement.classList.add("d-none");
+      e.parentElement.nextElementSibling.classList.remove("d-none");
+    })
+  })
+
+  document.querySelector("#bookings-history-btn").addEventListener("click", () => {
+    document.querySelector("#bookings-history").classList.toggle("d-none");
+  })
+
+  document.querySelector("#bookings-history-btn").addEventListener("mouseover", () => {
+    document.querySelector("#t").classList.toggle("d-none");
+  })
+
+  document.querySelector("#bookings-history-btn").addEventListener("mouseout", () => {
+    document.querySelector("#t").classList.toggle("d-none");
+  })
+
+  document.querySelector(".e").addEventListener("mouseover", () => {
+    document.querySelector("#e").classList.toggle("d-none");
+  })
+
+  document.querySelector(".e").addEventListener("mouseout", () => {
+    document.querySelector("#e").classList.toggle("d-none");
+  })
+
+  document.querySelector(".d").addEventListener("mouseover", () => {
+    document.querySelector("#d").classList.toggle("d-none");
+  })
+
+  document.querySelector(".d").addEventListener("mouseout", () => {
+    document.querySelector("#d").classList.toggle("d-none");
+  })
+
+</script>
