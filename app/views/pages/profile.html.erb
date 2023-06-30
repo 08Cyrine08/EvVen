@@ -10,16 +10,31 @@
     </div>
   </div> <br>
   <div class="user-details">
-  <h2>My info</h2>
-  <p>My e-mail:   <%= @user.email %></p><br>
-  <h3>About me</h3>
-  <% if @user.detail.present? %>
-    <div class=" d-flex details-box">
-    <%= link_to "🗑️", detail_path(@detail), class:"delete-detail", data: {turbo_method: :delete, turbo_confirm: "Clear details field?"} %>
-    <p><%=@user.detail.content %></p>
+    <h2>My info</h2>
+    <p>My e-mail:   <%= @user.email %></p><br>
+    <h3>About me</h3>
+    <% if @user.detail.present? %>
+      <div class=" d-flex details-box">
+        <%= link_to "🗑️", detail_path(@detail), class:"delete-detail", data: {turbo_method: :delete, turbo_confirm: "Clear details field?"} %>
+        <p><%=@user.detail.content %></p>
+      </div>
+    <% else %>
+      <%= render "details/form", detail: @detail %>
+    <% end %> <br>
+    <h2>My bookings</h2>
+    <div class="details-box">
+        <% if @bookings.present? %>
+          <ul>
+            <% @bookings.each do |booking| %>
+              <div class="d-flex justify-content-between">
+                <li><%=link_to booking.venue.name, venue_path(booking.venue), class: "venue-link text-decoration-none" %> from <%= booking.booking_start_date%> until <%= booking.booking_end_date %></li>
+                <%= link_to "🗑️", booking_path(booking), data: {turbo_method: :delete, turbo_confirm: "Cancel this booking?"}  %>
+              </div> <br>
+            <% end %>
+          </ul>
+          <% else %>
+            <p>You don't have any bookings yet...</p>
+        <% end %>
     </div>
-  <% else %>
-     <%= render "details/form", detail: @detail %>
-  <% end %>
   </div>
 </div>
