@@ -38,9 +38,8 @@ wedding = Venue.new(
   ",
   price: 1000
 )
-wedding.photos.attach(io: URI.open('https://res.cloudinary.com/dulcgeiwe/image/upload/v1688141662/1mr7y1ig3cl640vsqvg78mabgapv.jpg'), filename: 'image.jpg')
-# wedding.photos.attach(io: wedding1, filename: "wedding-1", content_type: "image/png")
-# wedding.photos.attach(io: wedding2, filename: "wedding-2", content_type: "image/png")
+wedding.photos.attach(io: wedding1, filename: "wedding-1", content_type: "image/png")
+wedding.photos.attach(io: wedding2, filename: "wedding-2", content_type: "image/png")
 wedding.user = user1
 wedding.save
 
