@@ -83,6 +83,7 @@ class VenuesController < ApplicationController
     @booking = Booking.new
     @review =  Review.new
     @reviews = Review.all
+    @tag = Tag.new
   end
 
   def new
