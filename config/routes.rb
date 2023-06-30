@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   end
 
   resources :reviews, only: :destroy
+  resources :bookings, only: :destroy
   resources :details, only: %i[new create edit update destroy]
 end
 # Defines the root path route ("/")
