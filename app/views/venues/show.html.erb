@@ -31,7 +31,7 @@
 
   <div id="bookings-history" class="position-absolute start-0 p-5 d-none mb-5" style="width: 300px; height: 350px; background-color: white; z-index: 2; overflow: auto;">
     <% @venue.bookings.each do |booking| %>
-      <h3>User #<%= booking.user_id %> has booked this venue </h3>
+      <h3><%= booking.user.first_name %> has booked this venue </h3>
       <p>From <%= booking.booking_start_date %></p>
       <p>To <%= booking.booking_end_date %></p>
       <p style="border-bottom: solid 1px gray;">For <%= booking.amount_guests %> people. </p>

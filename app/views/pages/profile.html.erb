@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="d-flex justify-content-around">
+  <div class="d-flex justify-content-between">
     <h1>Hello, <%= @user.first_name %></h1>
     <div class="avatar-profile">
       <% if current_user.photo.key %>
@@ -7,6 +7,7 @@
       <% else %>
         <img src="https://res.cloudinary.com/dwouepnpu/image/upload/v1685980904/4378936_umm3gk.png", class= "avatar-large", alt= "dropdown menu">
      <% end %>
+    <%= link_to "Add new venue", new_venue_path, class:"btn btn-primary text-decoration-none" %>
     </div>
   </div> <br>
   <div class="user-details">
