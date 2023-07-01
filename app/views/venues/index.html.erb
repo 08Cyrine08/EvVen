@@ -1,29 +1,30 @@
 
-<div class="position-relative">
-    <div class="container mt-5">
-      <h1 class="m-4">All clubs</h1>
-      <%= link_to "New venue", new_venue_path if policy(Venue).new? %>
-      <div class="row">
-        <% @venues.each do |venue| %>
-        <div class="col">
-          <div class="card mb-5" style="width: 24rem; height: 15rem; overflow: hidden;">
+  <div class="index-container">
+    <h1 class="index-title">Venues across our Globe.</h1>
+
+    <div class="row">
+      <% @venues.each_with_index do |venue, index| %>
+        <div class="col-md-4 mb-4">
+          <div class="index-card">
             <% if venue.photos.attached? %>
-              <div class="card-img-container" style="height: 13rem;">
-                <%= cl_image_tag(venue.photos[0].key, class: "card-img") %>
+              <div class="index-card-img-container">
+                <img src="<%= url_for(venue.photos[0]) %>" class="index-card-img">
               </div>
             <% else %>
-              <div class="card-img-container">
-                <img src="https://res.cloudinary.com/dwouepnpu/image/upload/v1685985732/venue_4_rent/empty_ey7qq4.jpg" class="card-img border-0 rounded-top-5">
+              <div class="index-card-img-container">
+                <img src="https://res.cloudinary.com/dulcgeiwe/image/upload/v1687711960/avatar-icon_nyvbwv.png" class="index-card-img">
               </div>
             <% end %>
-            <%= link_to "#{venue.name}", venue_path(venue), class:"btn btn-secondary" %>
+            <div class="index-card-overlay">
+              <h5 class="index-card-title"><%= venue.name %></h5>
+              <p class="index-card-text"><%= venue.location %></p>
+              <a href="<%= venue_path(venue) %>" class="btn btn-dark">View details</a>
+            </div>
           </div>
         </div>
-        <% end %>
-      </div>
-
-
+      <% end %>
     </div>
+  </div>
 
     <div class="" style="display: flex; flex-direction: column; gap: 30px;">
       <div id="chatbot"  class="position-absolute bottom-0 end-0 mx-3 mb-5" style=" background-color: blue; width: 400px;" class="p-2">

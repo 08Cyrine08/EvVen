@@ -1,4 +1,57 @@
-.card {
+.index-container {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.index-title {
+  font-family: 'IBM Plex Mono', sans-serif;
+  margin-top: 0;
+}
+
+.index-card {
   width: 486px;
   height: 369px;
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.index-card-img-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.index-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.index-card-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,.5);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  text-align: center;
+  color: white;
+}
+
+.index-card-title,
+.index-card-text {
+  margin-bottom: 10px;
+}
+
+.index-card-body {
+  position: relative;
+  z-index: 1;
 }
