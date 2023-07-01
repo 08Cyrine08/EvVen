@@ -7,17 +7,24 @@
 #   Character.create(name: "Luke", movie: movies.first)
 require "open-uri"
 require "faker"
+
 puts "Cleaning database"
 Venue.destroy_all
 User.destroy_all
+
 puts "Creating users"
+
 user1 = User.new(email: "test@test.com", password: "123456", first_name: "Barry", last_name: "Barnson")
 user1.save
+
 user2 = User.new(email: "test2@test.com", password: "123456", first_name: "Doyle", last_name: "Farrel")
 user2.save
+
 user3 = User.new(email: "test3@test.com", password: "123456", first_name: "Jessica", last_name: "Smith")
 user3.save
+
 puts "Creating venues"
+
 wedding1 = URI.open("https://res.cloudinary.com/dulcgeiwe/image/upload/v1687977109/Wedding-house-1_j8te7v.jpg")
 wedding2 = URI.open("https://res.cloudinary.com/dulcgeiwe/image/upload/v1687977109/Wedding-house-2_hrionv.jpg")
 wedding = Venue.new(
@@ -35,6 +42,7 @@ wedding.photos.attach(io: wedding1, filename: "wedding-1", content_type: "image/
 wedding.photos.attach(io: wedding2, filename: "wedding-2", content_type: "image/png")
 wedding.user = user1
 wedding.save
+
 open1 = URI.open("https://res.cloudinary.com/dulcgeiwe/image/upload/v1687977109/open-space-1_y91r8n.jpg")
 open2 = URI.open("https://res.cloudinary.com/dulcgeiwe/image/upload/v1687977109/open-space-2_uu2vhu.jpg")
 openspace = Venue.new(
@@ -50,6 +58,7 @@ openspace.photos.attach(io: open1, filename: "opens-1", content_type: "image/png
 openspace.photos.attach(io: open2, filename: "opens-2", content_type: "image/png")
 openspace.user = user2
 openspace.save
+
 loungephoto = URI.open("https://res.cloudinary.com/dulcgeiwe/image/upload/v1687977109/Lounge-1_hby0di.webp")
 lounge = Venue.new(
   name: "Lounge Bar",
@@ -63,6 +72,7 @@ lounge = Venue.new(
 lounge.photos.attach(io: loungephoto, filename: "lounge-1", content_type: "image/png")
 lounge.user = user1
 lounge.save
+
 cocktailphoto = URI.open("https://res.cloudinary.com/dulcgeiwe/image/upload/v1687977108/cocktail-party_xk1xft.jpg")
 cocktail = Venue.new(
   name: "Cocktail bar",
@@ -77,4 +87,5 @@ cocktail = Venue.new(
 cocktail.photos.attach(io: cocktailphoto, filename: "cocktailphoto", content_type: "image/png")
 cocktail.user = user3
 cocktail.save
+
 puts "All done!"

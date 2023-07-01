@@ -1,3 +1,4 @@
+
   <div class="index-container">
     <h1 class="index-title">Venues across our Globe.</h1>
 
@@ -24,3 +25,32 @@
       <% end %>
     </div>
   </div>
+
+    <div class="" style="display: flex; flex-direction: column; gap: 30px;">
+      <div id="chatbot"  class="position-absolute bottom-0 end-0 mx-3 mb-5" style=" background-color: blue; width: 400px;" class="p-2">
+        <div style="">
+            <div class="m-5 d-flex flex-column justify-content-around bg-success p-2 text-white bg-opacity-75" style="width: 300px">
+              <p style="color: black"><%= @answer %></p>
+            </div>
+
+            <form action="/venues" class="m-5 d-flex flex-row justify-content-around mb-4" style="width: 300px">
+              <input type="text" name="question" class="border-0 bg-success p-2 rounded h-75" style="--bs-bg-opacity: .5;">
+              <input type="submit" value="Ask!" class="btn btn-primary ms-2">
+            </form>
+
+        </div>
+
+      </div>
+
+    <button id="open-chatbot" class="btn btn-primary position-absolute top-0 end-0 m-2" style="">Chatbot</button>
+    </div>
+
+</div>
+
+
+<script>
+  document.querySelector("#open-chatbot").addEventListener("click", () => {
+    document.querySelector("#chatbot").classList.toggle("d-none");
+  })
+
+</script>
