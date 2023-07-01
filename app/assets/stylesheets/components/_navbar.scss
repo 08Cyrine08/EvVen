@@ -9,11 +9,6 @@
   flex-grow: 0;
 }
 
-.navbar-lewagon .navbar-brand img {
-  width: 40px;
-  padding: 0;
-}
-
 .navbar-nav .nav-item .nav-link {
   font-family: "IBM Plex Mono";
   color: #9cd7f2;
@@ -29,10 +24,18 @@
 }
 
 .navbar-nav {
-  display: inline-flex;
+  display: flex;
+  flex-direction: row-reverse;
   align-items: center;
 }
 
 .dropdown-menu {
   background-color: #9cd7f2;
+}
+
+.search {
+  // position: absolute;
+  // top: 20px;
+  // right: 100px;
+  // width: 100px;
 }

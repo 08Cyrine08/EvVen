@@ -1,17 +1,55 @@
-<div class="container">
-  <h1 class="mt-4">Clubs in <%= @city %>, <%= @date %></h1>
 
-<%= link_to "New venue", new_venue_path if policy(Venue).new? %>
-  <div class="row row-cols-1 row-cols-md-3">
-    <% @venues.each do |venue| %>
-      <div class="col mb-4">
-        <div class="card h-100">
-          <div class="card-body">
-            <h5 class="card-title"><%= venue.name %></h5>
-            <p class="card-text"><%= venue.location %></p>
+<div class="position-relative">
+    <div class="container mt-5">
+      <h1 class="m-4">All clubs</h1>
+      <%= link_to "New venue", new_venue_path if policy(Venue).new? %>
+      <div class="row">
+        <% @venues.each do |venue| %>
+        <div class="col">
+          <div class="card mb-5" style="width: 24rem; height: 15rem; overflow: hidden;">
+            <% if venue.photos.attached? %>
+              <div class="card-img-container" style="height: 13rem;">
+                <%= cl_image_tag(venue.photos[0].key, class: "card-img") %>
+              </div>
+            <% else %>
+              <div class="card-img-container">
+                <img src="https://res.cloudinary.com/dwouepnpu/image/upload/v1685985732/venue_4_rent/empty_ey7qq4.jpg" class="card-img border-0 rounded-top-5">
+              </div>
+            <% end %>
+            <%= link_to "#{venue.name}", venue_path(venue), class:"btn btn-secondary" %>
           </div>
         </div>
+        <% end %>
       </div>
-    <% end %>
-  </div>
+
+
+    </div>
+
+    <div class="" style="display: flex; flex-direction: column; gap: 30px;">
+      <div id="chatbot"  class="position-absolute bottom-0 end-0 mx-3 mb-5" style=" background-color: blue; width: 400px;" class="p-2">
+        <div style="">
+            <div class="m-5 d-flex flex-column justify-content-around bg-success p-2 text-white bg-opacity-75" style="width: 300px">
+              <p style="color: black"><%= @answer %></p>
+            </div>
+
+            <form action="/venues" class="m-5 d-flex flex-row justify-content-around mb-4" style="width: 300px">
+              <input type="text" name="question" class="border-0 bg-success p-2 rounded h-75" style="--bs-bg-opacity: .5;">
+              <input type="submit" value="Ask!" class="btn btn-primary ms-2">
+            </form>
+
+        </div>
+
+      </div>
+
+    <button id="open-chatbot" class="btn btn-primary position-absolute top-0 end-0 m-2" style="">Chatbot</button>
+    </div>
+
 </div>
+
+
+<script>
+  document.querySelector("#open-chatbot").addEventListener("click", () => {
+    document.querySelector("#chatbot").classList.toggle("d-none");
+  })
+
+</script>

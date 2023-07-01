@@ -1,7 +1,8 @@
 <div>
 <img class="logo vw-100 vh-100" src="https://res.cloudinary.com/dulcgeiwe/image/upload/v1687601510/EvVen_pk2dky.png" alt="">
   <div class="transition vw-100 vh-100">
-<a class="button text-decoration-none text-white" href="<%=venues_path%>">ENTER</a>    <div class="d-flex flex-row">
+<a class="button enter-link text-decoration-none text-white" href="<%=venues_path%>">ENTER</a>
+  <div class="d-flex flex-row">
       <div class="p-2">
         <p class="text-1">Connecting you to the perfect venue, every time, everywhere.</p>
       </div>
@@ -18,6 +19,9 @@
     </div>
     <div class="d-flex flex-row">
       <div class="p-2"><img class="pic-2" src="https://res.cloudinary.com/dulcgeiwe/image/upload/v1687710777/transition-pic-2_fg9cow.jpg" alt=""></div>
+    </div>
+    <div class="transition d-flex justify-content-center vw-100 vh-30">
+    <a class="button enter-link-2 text-center text-decoration-none text-white" href="<%=venues_path%>">Start looking👀</a>
     </div>
     <script>
           ScrollReveal({ distance: '60px' });
@@ -38,6 +42,10 @@
           ScrollReveal().reveal('.pic-2',{
             delay: 550,
             origin: 'left'
+            });
+          ScrollReveal().reveal('.enter-link-2',{
+            delay: 550,
+            origin: 'bottom'
             });
 	      </script>
   </div>
