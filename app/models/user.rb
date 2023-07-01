@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
   has_many :bookings
   has_many :venues
+  has_many :tags
   has_many :reviews, through: :venues
   has_one :detail, dependent: :destroy
   # Include default devise modules. Others available are:

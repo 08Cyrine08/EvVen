@@ -18,7 +18,9 @@ class BookingsController < ApplicationController
     @booking.user = @user
     @booking.venue = @venue
     if @booking.save
-      redirect_to profile_path, notice: "Booking request created successfully."
+
+      redirect_to venue_path(@venue), notice: "Booking request created successfully."
+
     else
       render :new
     end

@@ -28,21 +28,49 @@
 
   %>
   <button id="bookings-history-btn" class="" style="background-color: transparent; border: none; color: gray;">🗒️</button>
+  <%if @venue.user === current_user %>
+  <button id="tags-btn" class="" style="background-color: transparent; border: none; color: gray;">#️⃣</button>
+  <% end %>
+  <span class="d-none" id="h">Add tag</span>
   <span class="d-none" id="t">Booking History</span>
   <span class="d-none" id="e">Edit venue</span>
   <span class="d-none" id="d">Delete venue</span>
   </div>
 
+  <div style="width: 400px;">
+    <ul style="display: flex; flex-direction: row; gap: 15px; flex-wrap: wrap;">
+      <% @venue.tags.each do |tag| %>
+        <li class="text-center" style="list-style: none; height: 30px; width: 80px; background-color: darkblue; border-radius: 15px; color: white; position: relative; ">
+        <%= tag.text %>
+        <%if tag.user_id === current_user.id %>
+        <div style="background-color: black; color: white; border-radius: 50%; width: 25px; height: 25px; position: absolute; top: -10px; right: -10px; z-index: 3;">
+        <%= link_to 'X',
+              "/tags/#{tag.id}",
+              class: "text-decoration-none",
+              data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
+        %></div>
+        <% end %>
+        </li>
+      <%end%>
+    </ul>
+  </div>
 
   <div id="bookings-history" class="position-absolute start-0 p-5 d-none mb-5" style="width: 300px; height: 350px; background-color: white; z-index: 2; overflow: auto;">
     <% @venue.bookings.each do |booking| %>
-      <h3><%= booking.user.first_name %> has booked this venue </h3>
+      <h3><strong style="color: darkblue;"><%= booking.user.first_name %> <%= booking.user.last_name %></strong> has booked this venue </h3>
+
       <p>From <%= booking.booking_start_date %></p>
       <p>To <%= booking.booking_end_date %></p>
       <p style="border-bottom: solid 1px gray;">For <%= booking.amount_guests %> people. </p>
     <% end %>
   </div>
 
+  <div id="tags-form" class="position-absolute start-0 p-4 shadow p-3 mb-5 rounded d-none" style="width: 200px; height: 200px; background-color: transparent; z-index: 2;">
+    <%= simple_form_for [@venue, @tag] do |f| %>
+    <%= f.input :text, html5: true, input_html: { class: "bg-transparent border border-primary"}%>
+    <%= f.submit 'Add', :action => :create, :method => :post, class:"btn btn btn-dark text center w-100 text-white fw-bold mt-2 mb-2" %>
+    <% end %>
+  </div>
 
   <div data-booking-form-target="review" class="position-absolute start-0 p-4 d-none" style="width: 400px; height: 450px; background-color: white; z-index: 2;">
     <div class="position-relative" style="width: 350px; height: 30px;">
@@ -149,7 +177,10 @@
         <div class="col-4 p-5 shadow p-3 mb-5 bg-body rounded m-2 position-relative"  style="height: 300px; width: 380px; border-radius: 8px;">
 
             <h4 class="mb-2"><%=  "⭐" * review.rating%></h4>
-            <p class="p-3" style="height: 150px; "><%= review.text.truncate(90) %></p>
+            <small class="ms-3"><%= review.created_at.to_date %></small>
+            <p class="p-3" style="height: 120px; "><%= review.text.truncate(90) %></p>
+
+
             <button class="viewrev btn btn-dark">View review</button>
 
             <%= link_to '🗑️',
@@ -208,6 +239,18 @@
 
   document.querySelector(".d").addEventListener("mouseout", () => {
     document.querySelector("#d").classList.toggle("d-none");
+  })
+
+  document.querySelector("#tags-btn").addEventListener("mouseover", () => {
+    document.querySelector("#h").classList.toggle("d-none");
+  })
+
+  document.querySelector("#tags-btn").addEventListener("mouseout", () => {
+    document.querySelector("#h").classList.toggle("d-none");
+  })
+
+  document.querySelector("#tags-btn").addEventListener("click", () => {
+    document.querySelector("#tags-form").classList.toggle("d-none");
   })
 
 </script>

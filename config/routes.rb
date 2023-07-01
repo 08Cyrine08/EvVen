@@ -8,10 +8,11 @@ Rails.application.routes.draw do
   resources :venues do
     resources :reviews, only: %i[new create]
     resources :bookings, only: %i[new create]
-    resources :availabilities, only: %i[index create destroy]
+    resources :tags, only: %i[new create]
   end
 
   resources :reviews, only: :destroy
+  resources :tags, only: :destroy
   resources :bookings, only: :destroy
   resources :details, only: %i[new create edit update destroy]
 end
