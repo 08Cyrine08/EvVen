@@ -9,11 +9,11 @@ Rails.application.routes.draw do
     resources :reviews, only: %i[new create]
     resources :bookings, only: %i[new create]
     resources :tags, only: %i[new create]
-    resources :availabilities, only: %i[index create destroy]
   end
 
   resources :reviews, only: :destroy
   resources :tags, only: :destroy
+  resources :bookings, only: :destroy
   resources :details, only: %i[new create edit update destroy]
 end
 # Defines the root path route ("/")
