@@ -13,8 +13,13 @@
 
   <p style="color: black;"><strong><%= @venue.location %></strong></p>
 
-  <div class="mb-2">
-  <%= link_to '🖊️', edit_venue_path, class: "text-decoration-none pb-4 e"%>
+
+  <%= link_to '🖊️', edit_venue_path, class: "text-decoration-none pb-4"%>
+  <% if policy(@venue).edit? %>
+    <%= link_to "Edit this venue", edit_venue_path(@venue) %> |
+  <% end %>
+  <%= button_to "Destroy this venue", @venue, method: :delete if policy(@venue).destroy? %>
+
 
   <%= link_to '🗑️',
     venue_path(@venue),

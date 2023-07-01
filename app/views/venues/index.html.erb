@@ -1,6 +1,8 @@
+
 <div class="position-relative">
     <div class="container mt-5">
       <h1 class="m-4">All clubs</h1>
+      <%= link_to "New venue", new_venue_path if policy(Venue).new? %>
       <div class="row">
         <% @venues.each do |venue| %>
         <div class="col">
