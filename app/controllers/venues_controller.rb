@@ -4,9 +4,9 @@ class VenuesController < ApplicationController
 
   def index
     if params[:query].present?
-      @venues = Venue.search_by_name_location_description(params[:query])
+      @venues = policy_scope(Venue).search_by_name_location_description(params[:query])
     else
-    @venues = Venue.all
+      @venues = policy_scope(Venue)
     end
 
     @answer = 'Welcome to EvVen chatbot, type "help" or "assistance" to start'
@@ -76,23 +76,26 @@ class VenuesController < ApplicationController
       return @answer
       end
     end
-
   end
 
   def show
+    authorize @venue
     @booking = Booking.new
     @review =  Review.new
     @reviews = Review.all
+    @tag = Tag.new
   end
 
   def new
     @venue = Venue.new
+    authorize @venue
   end
 
   def create
     @user = current_user
     @venue = Venue.new(venue_params)
     @venue.user = @user
+    authorize @venue
     if @venue.save
       redirect_to venue_path(@venue), notice: "Venue created successfully."
     else
@@ -101,9 +104,11 @@ class VenuesController < ApplicationController
   end
 
   def edit
+    authorize @venue
   end
 
   def update
+    authorize @venue
     if @venue.update(venue_params)
       redirect_to venue_path(@venue), notice: "Venue updated successfully."
     else
@@ -112,6 +117,7 @@ class VenuesController < ApplicationController
   end
 
   def destroy
+    authorize @venue
     @venue.destroy
     redirect_to venues_path, notice: "Venue deleted successfully.", status: :see_other
   end
@@ -119,7 +125,7 @@ class VenuesController < ApplicationController
   private
 
   def venue_params
-    params.require(:venue).permit(:name, :location, :description, :price, :availability_dates, :tags, :user_id, :picture, photos: [])
+    params.require(:venue).permit(:name, :location, :description, :price, :availability_dates, :tags, :user_id, photos: [])
   end
 
   def set_params

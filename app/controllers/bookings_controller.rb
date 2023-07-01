@@ -18,7 +18,9 @@ class BookingsController < ApplicationController
     @booking.user = @user
     @booking.venue = @venue
     if @booking.save
-      redirect_to root_path, notice: "Booking request created successfully."
+
+      redirect_to venue_path(@venue), notice: "Booking request created successfully."
+
     else
       render :new
     end
@@ -40,7 +42,7 @@ class BookingsController < ApplicationController
   def destroy
     @booking = Booking.find(params[:id])
     @booking.destroy
-    redirect_to bookings_path, notice: "Booking request deleted successfully."
+    redirect_to profile_path
   end
 
   private
