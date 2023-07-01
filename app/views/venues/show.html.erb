@@ -3,53 +3,52 @@
 
 <div data-controller="booking-form">
   <div  class="container position-relative mt-5" style="height: 640px; z-index: 1;">
-  <h1 style="color: black;"><%= @venue.name %></h1>
-    <% if @venue.reviews.size > 0 %>
-    <% @venue.reviews.each do |rev| %>
-    <% rat << rev.rating %>
-    <%end%>
-    <p><%= "⭐" * (rat.sum / size) %></p>
-    <%end%>
+    <h1 style="color: black;"><%= @venue.name %></h1>
+      <% if @venue.reviews.size > 0 %>
+      <% @venue.reviews.each do |rev| %>
+      <% rat << rev.rating %>
+      <%end%>
+      <p><%= "⭐" * (rat.sum / size) %></p>
+      <%end%>
 
-  <p style="color: black;"><strong><%= @venue.location %></strong></p>
-
-
-  <%= link_to '🖊️', edit_venue_path, class: "text-decoration-none pb-4"%>
-  <% if policy(@venue).edit? %>
-    <%= link_to "Edit this venue", edit_venue_path(@venue) %> |
-  <% end %>
-  <%= button_to "Destroy this venue", @venue, method: :delete if policy(@venue).destroy? %>
+    <p style="color: black;"><strong><%= @venue.location %></strong></p>
 
 
-  <%= link_to '🗑️',
-    venue_path(@venue),
-    class: "text-decoration-none pb-4 d",
-    data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
 
-  %>
-  <button id="bookings-history-btn" class="" style="background-color: transparent; border: none; color: gray;">🗒️</button>
-  <%if @venue.user === current_user %>
-  <button id="tags-btn" class="" style="background-color: transparent; border: none; color: gray;">#️⃣</button>
-  <% end %>
-  <span class="d-none" id="h">Add tag</span>
-  <span class="d-none" id="t">Booking History</span>
-  <span class="d-none" id="e">Edit venue</span>
-  <span class="d-none" id="d">Delete venue</span>
-  </div>
+    <% if policy(@venue).edit? %>
+      <%= link_to '🖊️', edit_venue_path(@venue), class: "text-decoration-none pb-4 e" %>
+    <% end %>
+
+
+    <% if policy(@venue).destroy? %>
+    <%= link_to '🗑️',
+      venue_path(@venue),
+      class: "text-decoration-none pb-4 d",
+      data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
+
+    %>
+    <% end %>
+
+    <button id="bookings-history-btn" class="" style="background-color: transparent; border: none; color: gray;">🗒️</button>
+    <%if @venue.user === current_user %>
+    <button id="tags-btn" class="" style="background-color: transparent; border: none; color: gray;">#️⃣</button>
+    <% end %>
+    <span class="d-none" id="h">Add tag</span>
+    <span class="d-none" id="t">Booking History</span>
+    <span class="d-none" id="e">Edit venue</span>
+    <span class="d-none" id="d">Delete venue</span>
 
   <div style="width: 400px;">
     <ul style="display: flex; flex-direction: row; gap: 15px; flex-wrap: wrap;">
       <% @venue.tags.each do |tag| %>
-        <li class="text-center" style="list-style: none; height: 30px; width: 80px; background-color: darkblue; border-radius: 15px; color: white; position: relative; ">
+        <li class="text-center mt-4" style="list-style: none; height: 30px; width: 80px; background-color: darkblue; border-radius: 15px; color: white; position: relative; ">
         <%= tag.text %>
-        <%if tag.user_id === current_user.id %>
         <div style="background-color: black; color: white; border-radius: 50%; width: 25px; height: 25px; position: absolute; top: -10px; right: -10px; z-index: 3;">
         <%= link_to 'X',
               "/tags/#{tag.id}",
               class: "text-decoration-none",
               data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
         %></div>
-        <% end %>
         </li>
       <%end%>
     </ul>
