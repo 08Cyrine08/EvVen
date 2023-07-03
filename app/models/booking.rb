@@ -3,6 +3,9 @@ class Booking < ApplicationRecord
   validates :booking_end_date, presence: true
   belongs_to :user
   belongs_to :venue
+  validate :booking_dates_cannot_be_in_the_past
+
+  private
 
   def booking_dates_cannot_be_in_the_past
     if booking_start_date && booking_start_date < Date.today
