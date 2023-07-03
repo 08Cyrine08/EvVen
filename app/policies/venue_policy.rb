@@ -1,8 +1,7 @@
 class VenuePolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
-      # scope.all
-      user.admin? ? scope.all : scope.where(user: user)
+      scope.all
     end
   end
 
@@ -16,6 +15,10 @@ class VenuePolicy < ApplicationPolicy
 
   def create?
     true
+  end
+
+  def edit?
+    return update?
   end
 
   def update?

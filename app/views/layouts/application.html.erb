@@ -36,6 +36,27 @@
         right: 15px;
       }
 
+      #searchbar {
+        transition: 3s;
+        position: absolute;
+        bottom:50px;
+        right:90px;
+        border-radius: 10%;
+        opacity: 0;
+      }
+
+      #search-icon{
+        translate: none;
+        transition: 0.4s;
+        position:absolute;
+        bottom:70px;
+        right: 130px;
+        background-color: transparent;
+        box-shadow: none;
+        border:none;
+        z-index: 1;
+      }
+
       @media screen and (max-width: 580px) {
         #navbar {
         padding: 20px 10px !important;
@@ -50,6 +71,11 @@
       <main>
         <%= render "shared/navbar" if !current_page?(root_path) %>
         <script>
+          function showBar() {
+              document.getElementById("search-icon").style.translate = "-200px";
+              document.getElementById("searchbar").style.opacity = "1";
+          }
+
           window.onscroll = function() {scrollFunction()};
 
           function scrollFunction() {
