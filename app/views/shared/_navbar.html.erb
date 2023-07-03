@@ -9,11 +9,10 @@
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <button onclick="showBar()" id="search-icon"><i class="fa-solid fa-magnifying-glass fa-2xl" style="color: #f3edf2;"></i></button>
+      <span id="searchbar" class="hidden"><%= render "shared/search" %></span>
       <ul class="navbar-nav me-auto" id="nav">
         <% if user_signed_in? %>
-        <li>
-          <%= render "shared/search" %>
-        </li>
           <li class="nav-item dropdown">
           <a href="#" class="profile text-decoration-none" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             My profile

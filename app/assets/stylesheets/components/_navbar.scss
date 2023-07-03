@@ -7,6 +7,7 @@
 
 .navbar-lewagon .navbar-collapse {
   flex-grow: 0;
+  display: flex;
 }
 
 .navbar-nav .nav-item .nav-link {
@@ -24,8 +25,7 @@
 }
 
 .navbar-nav {
-  display: flex;
-  flex-direction: row-reverse;
+  flex-direction: column;
   align-items: center;
 }
 
@@ -33,9 +33,6 @@
   background-color: #9cd7f2;
 }
 
-.search {
-  // position: absolute;
-  // top: 20px;
-  // right: 100px;
-  // width: 100px;
-}
+// .hidden {
+//   display: none;
+// }
