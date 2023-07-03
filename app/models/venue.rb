@@ -3,7 +3,7 @@ class Venue < ApplicationRecord
   validates :name, presence: true
   validates :location, presence: true
   belongs_to :user
-  has_many :tags
+  has_many :tags, dependent: :destroy
   has_many :bookings, dependent: :destroy
   has_many :reviews, dependent: :destroy
 
