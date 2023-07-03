@@ -115,7 +115,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_30_064240) do
     t.string "location"
     t.text "description"
     t.decimal "price"
-    t.text "availability_dates"
+    t.date "availability_dates"
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
