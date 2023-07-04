@@ -1,6 +1,11 @@
 
   <div class="index-container">
-    <h1 class="index-title">Venues across our Globe.</h1>
+
+    <% if params[:query] && params[:query] != ""%>
+    <h1 class="index-title">Results for <%= params[:query] %></h1>
+    <% else %>
+    <h1 class="index-title my-4">Venues across our Globe.</h1>
+    <% end %>
 
     <div class="row">
       <% @venues.each_with_index do |venue, index| %>
