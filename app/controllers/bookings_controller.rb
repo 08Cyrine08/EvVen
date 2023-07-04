@@ -2,6 +2,7 @@ class BookingsController < ApplicationController
 
   def show
     @booking = Booking.find(params[:id])
+    authorize @booking
   end
 
   def new
@@ -14,6 +15,7 @@ class BookingsController < ApplicationController
     @venue = Venue.find(params[:venue_id])
     @booking.user = @user
     @booking.venue = @venue
+    authorize @booking
     if @booking.save
 
       redirect_to venue_path(@venue), notice: "Booking request created successfully."
@@ -38,6 +40,7 @@ class BookingsController < ApplicationController
 
   def destroy
     @booking = Booking.find(params[:id])
+    authorize @booking
     @booking.destroy
     redirect_to profile_path
   end
