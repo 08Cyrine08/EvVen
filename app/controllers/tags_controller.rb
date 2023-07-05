@@ -19,6 +19,7 @@ class TagsController < ApplicationController
 
   def destroy
     @tag = Tag.find(params[:id])
+    authorize @tag
     @tag.destroy
     redirect_to "/venues/#{@tag.venue_id}"
   end
