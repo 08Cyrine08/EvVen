@@ -9,10 +9,11 @@ class ReviewsController < ApplicationController
   end
 
   def create
+    @user = current_user
     @review = Review.new(review_params)
     @venue = Venue.find(params[:venue_id])
     @review.venue = @venue
-    @review.user = current_user
+    @review.user = @user
     authorize @review
     if @review.save
       redirect_to "/venues/#{@venue.id}", notice: "Review created successfully."

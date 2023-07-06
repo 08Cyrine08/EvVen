@@ -7,8 +7,7 @@ class User < ApplicationRecord
   has_many :bookings
   has_many :venues
   has_many :tags, dependent: :destroy
-  has_many :reviews, through: :venues
-  has_one :detail, dependent: :destroy
+  has_many :reviews
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,

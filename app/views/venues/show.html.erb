@@ -115,7 +115,7 @@
     </div>
 
   <p class="position-absolute top-50 start-50 d-flex flex-column" style="color: black;">
-  <span class="mb-2">Available during: <strong><%= @venue.availability_dates %></strong></span>
+  <span class="mb-2">Available during: </span>
   <span class="mb-2">From: 💲 <%= @venue.price %></span>
 
   <span style="z-index: 1;"><%= @venue.description %></span>
@@ -167,27 +167,26 @@
       <% @venue.reviews.each do |review| %>
 
         <div class="col-4 p-5 shadow p-3 mb-5 bg-body rounded m-2 position-relative d-none"  style="height: 300px; width: 380px; border-radius: 8px;">
-
+              <h4><%= review.user.first_name %> <%= review.user.last_name %></h4>
               <p class="p-3" style="height: 150px; "><%= review.text %></p>
             <button class="hiderev position-absolute top-0 end-0 btn btn-dark">X</button>
 
         </div>
 
         <div class="col-4 p-5 shadow p-3 mb-5 bg-body rounded m-2 position-relative"  style="height: 300px; width: 380px; border-radius: 8px;">
-
+            <h4><%= review.user.first_name%> <%= review.user.last_name %></h4>
             <h4 class="mb-2"><%=  "⭐" * review.rating%></h4>
             <small class="ms-3"><%= review.created_at.to_date %></small>
             <p class="p-3" style="height: 120px; "><%= review.text.truncate(90) %></p>
 
-
-            <button class="viewrev btn btn-dark">View review</button>
-
-            <%= link_to '🗑️',
-              "/reviews/#{review.id}",
-              class: "text-decoration-none pb-4 position-absolute bottom-0 end-0 p-5",
-              data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
-
-            %>
+            <button class="viewrev btn btn-dark position-absolute bottom-0 start-50 translate-middle-x">View review</button>
+            <% if policy(review).destroy? %>
+              <%= link_to '🗑️',
+                "/reviews/#{review.id}",
+                class: "text-decoration-none pb-4 position-absolute top-0 end-0 p-5",
+                data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
+              %>
+            <% end %>
         </div>
         <% end %>
     </div>
