@@ -14,7 +14,6 @@ Rails.application.routes.draw do
   resources :reviews, only: :destroy
   resources :tags, only: :destroy
   resources :bookings, only: :destroy
-  resources :details, only: %i[new create edit update destroy]
 end
 # Defines the root path route ("/")
 # root "articles#index"
