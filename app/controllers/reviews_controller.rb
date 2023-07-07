@@ -23,8 +23,10 @@ class ReviewsController < ApplicationController
   end
 
   def destroy
+
     @review = Review.find(params[:id])
     authorize @review
+
     @review.destroy
     redirect_to "/venues/#{@review.venue_id}"
   end
