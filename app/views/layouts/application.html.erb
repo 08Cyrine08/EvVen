@@ -12,7 +12,7 @@
     <script src="https://unpkg.com/scrollreveal@4.0.0/dist/scrollreveal.min.js"></script>
     <style>
       #navbar {
-        padding: 20px 10px;
+        padding: 30px 10px;
         width: 100%;
         top: 0;
         /* overflow: hidden; */
@@ -20,7 +20,8 @@
         background: #140057;
         opacity: 0.8;
         transition: 0.4s;
-        position: sticky;
+        position: fixed;
+        z-index: 99;
       }
 
       #logo {
@@ -29,32 +30,39 @@
         height: 90px;
       }
 
+      #navbarSupportedContent {
+        display: flex;
+        justify-content: flex-start;
+        margin-right: 50px;
+      }
+
       #nav {
         transition: 0.4s;
-        position: absolute;
-        top: 40px;
-        right: 15px;
+        /* top: 40px;
+        right: 15px; */
       }
 
       #searchbar {
-        transition: 3s;
-        position: absolute;
-        bottom:50px;
-        right:90px;
+        transition: 0.5s;
         border-radius: 10%;
         opacity: 0;
+       }
+
+      #search-items {
+        display: flex;
+        justify-content:center;
+        /* top: 40px;
+        right:90px; */
       }
 
       #search-icon{
         translate: none;
         transition: 0.4s;
-        position:absolute;
-        bottom:70px;
-        right: 130px;
         background-color: transparent;
         box-shadow: none;
         border:none;
         z-index: 1;
+        margin-left: 20px;
       }
 
       @media screen and (max-width: 580px) {
@@ -69,34 +77,38 @@
   <body>
     <div id="pages-container">
       <main>
-        <%= render "shared/navbar" if !current_page?(root_path) %>
+      <%= render "shared/navbar" if !current_page?(root_path) %>
         <script>
           function showBar() {
-              document.getElementById("search-icon").style.translate = "-200px";
               document.getElementById("searchbar").style.opacity = "1";
           }
 
           window.onscroll = function() {scrollFunction()};
 
           function scrollFunction() {
-            if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
-              document.getElementById("navbar").style.padding = "10px 0px";
+            if (document.body.scrollTop > 30 || document.documentElement.scrollTop > 30) {
+              document.getElementById("navbar").style.padding = "10px 10px";
               document.getElementById("logo").style.height = "50px";
               document.getElementById("logo").style.width = "50px";
               document.getElementById("nav").style.top = "20px";
+              document.getElementById("search-icon").style.top = "20px";
+              document.getElementById("searchbar").style.top = "10px";
 
 
-            } else {
-              document.getElementById("navbar").style.padding = "20px 10px";
-              document.getElementById("logo").style.height = "120px"
-              document.getElementById("logo").style.width = "90px"
-              document.getElementById("nav").style.top = "40px";
+             } else {
+               document.getElementById("navbar").style.padding = "20px 10px";
+               document.getElementById("logo").style.height = "120px"
+               document.getElementById("logo").style.width = "90px"
+               document.getElementById("nav").style.top = "40px";
+               document.getElementById("search-icon").style.top = "40px";
+               document.getElementById("searchbar").style.top = "40px";
             }
           }
         </script>
         <%= render "shared/flashes"%>
-
+        <div style="margin-top: 210px">
         <%= yield %>
+        </div>
       </main>
       <%= render "shared/footer" if !current_page?(root_path) %>
     </div>

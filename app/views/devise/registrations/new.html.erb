@@ -14,6 +14,10 @@
                   required: true,
                   autofocus: true,
                   input_html: { autocomplete: "email", class: "bg-transparent border border-primary" }%>
+      <%= f.input :details,
+                   required: false,
+                   autofocus: true,
+                   input_html: { class: "bg-transparent border border-primary" }  %>
       <%= f.input :email,
                   required: true,
                   autofocus: true,

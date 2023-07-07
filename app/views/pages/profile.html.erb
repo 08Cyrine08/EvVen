@@ -11,17 +11,18 @@
     </div>
   </div> <br>
   <div class="user-details">
-    <h2>My info</h2>
+    <h2>My info <%= link_to "🖊", edit_user_registration_path, class:"edit text-decoration-none text-black" %></h2>
     <p>My e-mail:   <%= @user.email %></p><br>
     <h3>About me</h3>
-    <% if @user.detail.present? %>
-      <div class=" d-flex details-box">
-        <%= link_to "🗑️", detail_path(@detail), class:"delete-detail", data: {turbo_method: :delete, turbo_confirm: "Clear details field?"} %>
-        <p><%=@user.detail.content %></p>
-      </div>
-    <% else %>
-      <%= render "details/form", detail: @detail %>
-    <% end %> <br>
+    <br>
+    <h2>My details</h2>
+    <div class="details-box">
+      <% if @user.details.present? %>
+      <p><%= @user.details %></p>
+      <% else %>
+      <p>You haven't added your personal information...</p>
+      <% end %>
+    </div>
     <h2>My bookings</h2>
     <div class="details-box">
         <% if @bookings.present? %>

@@ -79,11 +79,14 @@ class VenuesController < ApplicationController
   end
 
   def show
+
     authorize @venue
     @booking = Booking.new
     @review =  Review.new
     @reviews = Review.all
     @tag = Tag.new
+    @user = current_user
+
   end
 
   def new
