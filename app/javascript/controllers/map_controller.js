@@ -17,8 +17,10 @@ export default class extends Controller {
   }
 
   #addMarkersToMap() {
-    this,markersValue.forEach((marker) => {
-      popup.setLngLat([-122.4194, 37.7749]);
+    this.markersValue.forEach((marker) => {
+      new mapboxgl.Marker()
+      .setLngLat([ marker.lng, marker.lat ])
+      .addTo(this.map)
     })
   }
 }
