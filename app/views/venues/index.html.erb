@@ -7,6 +7,12 @@
     <h1 class="index-title my-4">Venues across our Globe.</h1>
     <% end %>
 
+    <div  data-controller="map"
+          id='map'
+          data-map-markers-value="<%= @markers.to_json %>"
+          data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"
+          style='width: 400px; height: 300px;'></div>
+
     <div class="row">
       <% @venues.each_with_index do |venue, index| %>
         <div class="col-md-4 mb-4">
