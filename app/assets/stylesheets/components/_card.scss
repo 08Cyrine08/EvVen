@@ -1,6 +1,8 @@
 .index-container {
   margin-top: 20px;
   margin-bottom: 20px;
+  max-width: 100%;
+  overflow: hidden;
 }
 
 .index-title {
@@ -9,25 +11,25 @@
 }
 
 .index-card {
-  width: 486px;
+  width: 100%;
   height: 369px;
   position: relative;
   margin-bottom: 20px;
+  overflow: hidden;
 }
 
 .index-card-img-container {
-  position: absolute;
-  top: 0;
-  left: 0;
+  position: relative;
   width: 100%;
   height: 100%;
   overflow: hidden;
 }
 
 .index-card-img {
-  width: 100%;
+  width: auto;
   height: 100%;
   object-fit: cover;
+  object-position: center;
 }
 
 .index-card-overlay {
@@ -36,7 +38,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0,0,0,.5);
+  background-color: rgba(0, 0, 0, .5);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -54,4 +56,10 @@
 .index-card-body {
   position: relative;
   z-index: 1;
+}
+
+@media (max-width: 768px) {
+  .index-card {
+    width: 100%;
+  }
 }
