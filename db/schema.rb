@@ -54,6 +54,17 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_05_181957) do
     t.index ["venue_id"], name: "index_bookings_on_venue_id"
   end
 
+
+  create_table "messages", force: :cascade do |t|
+    t.string "content"
+    t.bigint "chatroom_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["chatroom_id"], name: "index_messages_on_chatroom_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
   create_table "messages", force: :cascade do |t|
     t.string "content"
     t.bigint "chatroom_id", null: false
@@ -105,6 +116,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_05_181957) do
   create_table "venues", force: :cascade do |t|
     t.string "name"
     t.string "location"
+
     t.string "description"
     t.integer "price"
     t.bigint "user_id", null: false
