@@ -3,12 +3,9 @@ class CreateVenues < ActiveRecord::Migration[7.0]
     create_table :venues do |t|
       t.string :name
       t.string :location
-      t.text :description
-      t.decimal :price
-      t.date :availability_dates
-      t.string :tags
-      t.integer :user_id
-      t.string :picture
+      t.string :description
+      t.integer :price
+      t.references :user, null: false, foreign_key: true
 
       t.timestamps
     end
