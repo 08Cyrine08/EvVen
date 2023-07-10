@@ -12,7 +12,12 @@ class VenuesController < ApplicationController
     else
       @venues = policy_scope(Venue)
     end
-
+    @markers = @venues.geocoded.map do |venue|
+      {
+        lat: venue.latitude,
+        lng: venue.longitude
+      }
+    end
     @answer = 'Welcome to EvVen chatbot, type "help" or "assistance" to start'
 
       if params[:question]
@@ -83,11 +88,14 @@ class VenuesController < ApplicationController
   end
 
   def show
+
     authorize @venue
     @booking = Booking.new
     @review =  Review.new
     @reviews = Review.all
     @tag = Tag.new
+    @user = current_user
+
   end
 
   def new
