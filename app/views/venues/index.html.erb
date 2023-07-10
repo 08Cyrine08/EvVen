@@ -1,18 +1,11 @@
-
-  <div class="index-container">
-
-    <% if params[:query] && params[:query] != ""%>
+<div class="index-container">
+  <% if params[:query] && params[:query] != ""%>
     <h1 class="index-title">Results for <%= params[:query] %></h1>
-    <% else %>
+  <% else %>
     <h1 class="index-title my-4">Venues across our Globe.</h1>
-    <% end %>
+  <% end %>
 
-    <div  data-controller="map"
-          id='map'
-          data-map-markers-value="<%= @markers.to_json %>"
-          data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"
-          style='width: 400px; height: 300px;'></div>
-
+  <div class="index-content">
     <div class="cards">
       <% @venues.each_with_index do |venue, index| %>
         <div class="col-md-4 mb-4">
@@ -35,33 +28,79 @@
         </div>
       <% end %>
     </div>
+
+    <div class="map-container">
+      <h2 class="map-title">Or Browse yourself through our map...</h2>
+      <div
+        data-controller="map"
+        id="map"
+        data-map-markers-value="<%= @markers.to_json %>"
+        data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"
+      ></div>
+    </div>
   </div>
 
-    <div class="" style="display: flex; flex-direction: column; gap: 30px;">
-      <div id="chatbot"  class="position-absolute bottom-0 mx-3 mb-5" style=" background-color: blue; width: 400px; border-radius: 15px; right: 75px;" class="p-2">
-        <div style="">
-            <div class="m-5 d-flex flex-column justify-content-around bg-success p-2 text-white bg-opacity-75" style="width: 300px">
-              <p style="color: black"><%= @answer %></p>
-            </div>
-
-            <form action="/venues" class="m-5 d-flex flex-row justify-content-around mb-4" style="width: 300px">
-              <input type="text" name="question" class="border-0 bg-success p-2 rounded h-75" style="--bs-bg-opacity: .5;">
-              <input type="submit" value="Ask!" class="btn btn-primary ms-2">
-            </form>
-
-        </div>
-
+  <div id="chatbot" class="position-absolute bottom-0 mx-3 mb-5" style="background-color: blue; width: 400px; border-radius: 15px; right: 75px;" class="p-2">
+    <div style="">
+      <div class="m-5 d-flex flex-column justify-content-around bg-success p-2 text-white bg-opacity-75" style="width: 300px">
+        <p style="color: black"><%= @answer %></p>
       </div>
 
-    <button id="open-chatbot" class="btn btn-primary position-absolute end-0 m-2" style="cursor:pointer; bottom: 0px;">Chatbot</button>
+      <form action="/venues" class="m-5 d-flex flex-row justify-content-around mb-4" style="width: 300px">
+        <input type="text" name="question" class="border-0 bg-success p-2 rounded h-75" style="--bs-bg-opacity: .5;">
+        <input type="submit" value="Ask!" class="btn btn-primary ms-2">
+      </form>
     </div>
+  </div>
 
+  <button id="open-chatbot" class="btn btn-primary position-absolute end-0 m-2" style="cursor:pointer; bottom: 0px;">Chatbot</button>
 </div>
 
+<style>
+  .index-container {
+    position: relative;
+  }
+
+  .index-content {
+    display: flex;
+    align-items: flex-start;
+    gap: 30px;
+  }
+
+  .cards {
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-left: 20px;
+  }
+
+  .index-card {
+    flex: 1 0 45%;
+  }
+
+  .map-container {
+    flex: 1.5;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-right: 20px;
+    margin-top: 20px;
+  }
+
+  .map-title {
+    margin-bottom: 10px;
+  }
+
+  #map {
+    width: 100%;
+    height: 500px;
+  }
+</style>
 
 <script>
   document.querySelector("#open-chatbot").addEventListener("click", () => {
     document.querySelector("#chatbot").classList.toggle("d-none");
-  })
-
+  });
 </script>
