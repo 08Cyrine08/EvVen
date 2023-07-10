@@ -4,9 +4,6 @@ class VenuesController < ApplicationController
 
   def index
     @venues = Venue.all
-    @markers = @venues.geocoded.map do |venue|
-      { lat: venue.latitude, lng: venue.longitude }
-    end
     if params[:query].present?
       @venues = policy_scope(Venue).search_by_name_location_description(params[:query])
     else
