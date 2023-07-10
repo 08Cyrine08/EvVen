@@ -29,7 +29,7 @@ wedding1 = URI.open("https://res.cloudinary.com/dulcgeiwe/image/upload/v16879771
 wedding2 = URI.open("https://res.cloudinary.com/dulcgeiwe/image/upload/v1687977109/Wedding-house-2_hrionv.jpg")
 wedding = Venue.new(
   name: "Rose Garden",
-  location: Faker::Address.full_address,
+  location: "Paris, France",
   description: "Are you looking for the perfect place to tie the knot? Look no further than the Rose Garden, a stunning
   wedding venue that will make your special day unforgettable. The Rose Garden offers a beautiful outdoor setting with
   lush greenery, fragrant roses, and a romantic gazebo. Whether you want a small intimate ceremony or a lavish reception,
