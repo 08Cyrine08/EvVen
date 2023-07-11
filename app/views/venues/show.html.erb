@@ -130,9 +130,9 @@
     </div>
 
     <h2 class="text-center">Booking form</h2>
-    <%= simple_form_for [@venue, @booking] do |f| %>
-    <%= f.input :booking_start_date, as: :date, :label =>"Choose start date", html5: true%>
-    <%= f.input :booking_end_date, as: :date, :label =>"Choose end date", html5: true%>
+    <%= simple_form_for [@venue, @booking], data: { controller: 'flatpickr' } do |f| %>
+    <%= f.input :booking_start_date, as: :string, :label =>"Choose start date", html5: true, input_html: { data: { flatpickr_target: "startDate" } }%>
+    <%= f.input :booking_end_date, as: :string, :label =>"Choose end date", html5: true, input_html: { data: { flatpickr_target: "endDate" } }%>
     <%= f.input :amount_guests, :label =>"# of Guests", html5: true%>
     <%= f.submit 'Send booking request', :action => :create, :method => :post, class:"btn btn btn-dark text center w-100 text-white fw-bold mt-4" %>
     <% end %>
