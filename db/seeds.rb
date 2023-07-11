@@ -134,7 +134,7 @@ ministry.photos.attach(io: ministry2, filename: "ministry-of-sound-2", content_t
 ministry.user = user1
 ministry.save
 
-# Printworks London
+
 printworks1 = URI.open("https://res.cloudinary.com/dulcgeiwe/image/upload/v1689105412/printworks_1_lyb78l.avif")
 printworks2 = URI.open("https://res.cloudinary.com/dulcgeiwe/image/upload/v1689105419/printworks_2_q1z5a3.jpg")
 printworks = Venue.new(
@@ -143,6 +143,7 @@ printworks = Venue.new(
   description: "Printworks London is a 5000-capacity licensed venue located within a former printing facility for the Metro and Evening Standard newspapers. It offers a unique space in London's Docklands and hosts a variety of events, combining industrial aesthetics with a vibrant atmosphere.",
   price: 400
 )
+
 printworks.photos.attach(io: printworks1, filename: "printworks-london-1", content_type: "image/jpeg")
 printworks.photos.attach(io: printworks2, filename: "printworks-london-2", content_type: "image/jpeg")
 printworks.user = user1
