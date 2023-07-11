@@ -88,4 +88,86 @@ cocktail.photos.attach(io: cocktailphoto, filename: "cocktailphoto", content_typ
 cocktail.user = user3
 cocktail.save
 
+rexclub1 = URI.open("https://res.cloudinary.com/dulcgeiwe/image/upload/v1689025883/rexclub_1_oveh4a.jpg")
+rexclub2 = URI.open("https://res.cloudinary.com/dulcgeiwe/image/upload/v1689025904/rexclub_2_uftr3z.jpg")
+rexclub = Venue.new(
+  name: "The Rex Club",
+  location: "5 Bd Poissonnière, 75002 Paris, France",
+  description: "Started by Laurent Garnier in 1992, Paris’ Rex Club is one of
+  the city’s oldest and longest-running spots for techno and house parties.
+  With a fully lit stage, walls lined with booths and seating, and a dance
+  floor that stretches all the way to the bar, Rex Club offers plenty of
+  options for clubbers. Rex Club has undoubtedly been one of the strongest
+  driving forces of the Parisian nightlife scene. Ever since its opening 30
+  years ago, Rex Club has become the go-to place for those who are avid lovers
+  of techno and electronic music. Even after so many years of being open and
+  inviting all kinds of partygoers, Rex Club has kept its authenticity
+  and simplicity intact. Not just in its décor, but everything about this club
+  shines out on its simplistic nature; right from the drinks served, to the
+  kind of music played, to the door policy. The club opens its doors from
+  Wednesdays to Saturdays, and unlike other clubs, the door policy
+  for Rex Club is refreshingly freeing. This is one of the few clubs in Paris
+  which remains open until the wee hours of the morning (7 am, actually), so
+  if you are one of those partygoers who love to end your night by saying hello
+  to the sunrise, well, Rex Club is the place you want to be.",
+  price: 300
+)
+rexclub.photos.attach(io: rexclub1, filename: "rexclub-1", content_type: "image/png")
+rexclub.photos.attach(io: rexclub2, filename: "rexclub-2", content_type: "image/png")
+rexclub.user = user1
+rexclub.save
+
+concrete1 = URI.open("https://res.cloudinary.com/dulcgeiwe/image/upload/v1689025883/rexclub_1_oveh4a.jpg")
+concrete2 = URI.open("https://res.cloudinary.com/dulcgeiwe/image/upload/v1689025904/rexclub_2_uftr3z.jpg")
+concrete = Venue.new(
+  name: "Concrete",
+  location: "69 Port De La Rapée, 75012 Paris, France",
+  description: "Concrete is the best venue for techno and house music lovers in Paris. Located on a three-level boat docked on the Seine since 2011, the team throws parties that go all night or all day or both, soundtracked by French and international DJs. Concrete is open Friday, Saturday and occasionally for the 28-hour party-festival 'Samedimanche', running from Saturday 11pm through Monday morning 2am. The club also manages the Concrete Music record label, Hors Serie parties and the huge Weather Festival.",
+  price: 500
+)
+concrete.photos.attach(io: concrete1, filename: "concrete-1", content_type: "image/png")
+concrete.photos.attach(io: concrete2, filename: "concrete-2", content_type: "image/png")
+concrete.user = user1
+concrete.save
+
+le_showcase1 = URI.open("https://res.cloudinary.com/dulcgeiwe/image/upload/v1689025883/rexclub_1_oveh4a.jpg")
+le_showcase2 = URI.open("https://res.cloudinary.com/dulcgeiwe/image/upload/v1689025904/rexclub_2_uftr3z.jpg")
+le_showcase = Venue.new(
+  name: "Le Showcase",
+  location: "Pont Alexandre III; Port des Champs Elysées; 75008; Paris; France",
+  description: "Located underneath a bridge on the bank of the Seine in the heart of Paris, Showcase offers a crossover line up ranging from House & Techno to Hip Hop & Bass music. As one of the largest venues in Paris, Showcase regularly hosts both a range of international DJs and producers alongside the city's local talents.",
+  price: 300
+)
+le_showcase.photos.attach(io: le_showcase1, filename: "le-showcase-1", content_type: "image/png")
+le_showcase.photos.attach(io: le_showcase2, filename: "le-showcase-2", content_type: "image/png")
+le_showcase.user = user1
+le_showcase.save
+
+le_wanderlust1 = URI.open("https://res.cloudinary.com/dulcgeiwe/image/upload/v1689025883/rexclub_1_oveh4a.jpg")
+le_wanderlust2 = URI.open("https://res.cloudinary.com/dulcgeiwe/image/upload/v1689025904/rexclub_2_uftr3z.jpg")
+le_wanderlust = Venue.new(
+  name: "Le Wanderlust",
+  location: "32 quai d'Austerlitz, 75013 Paris",
+  description: "The Wanderlust is located in the heart of the Cité de la Mode et du Design, conceived by architects Jakob+Macfarlane. The venue offers a large terrace in Paris on which to dance or to relax, an exhibition and cultural space, an experimental restaurant, an outdoor and indoor night-club, open air cinéma, sports activities and kids workshops, designers markets...",
+  price: 200
+)
+le_wanderlust.photos.attach(io: le_wanderlust1, filename: "le-wanderlust-1", content_type: "image/png")
+le_wanderlust.photos.attach(io: le_wanderlust2, filename: "le-wanderlust-2", content_type: "image/png")
+le_wanderlust.user = user1
+le_wanderlust.save
+
+social_club1 = URI.open("https://res.cloudinary.com/dulcgeiwe/image/upload/v1689025883/rexclub_1_oveh4a.jpg")
+social_club2 = URI.open("https://res.cloudinary.com/dulcgeiwe/image/upload/v1689025904/rexclub_2_uftr3z.jpg")
+social_club = Venue.new(
+  name: "Social Club",
+  location: "142 rue Montmartre, 75002 Paris",
+  description: "Located in central Paris on the Rue Montmartre, Social Club is open every week from Tuesday to Saturday nights and is decorated in a self-proclaimed 'retrofuturist' style, painted completely black with strategically placed neon lights. The 500-capacity club is housed in the same building that used to print George Clemenceau's L'Aurore newspaper, and features a small stage at the end of the dance floor and two bars, one near the entrance and one near the dance floor. The music ranges, but house, techno, disco, electro and similar genres are usually on offer.",
+  price: 400
+)
+social_club.photos.attach(io: social_club1, filename: "social-club-1", content_type: "image/png")
+social_club.photos.attach(io: social_club2, filename: "social-club-2", content_type: "image/png")
+social_club.user = user1
+social_club.save
+
+
 puts "All done!"

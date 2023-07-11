@@ -1,4 +1,4 @@
-<div class="index-container">
+<div class="container">
   <% if params[:query] && params[:query] != ""%>
     <h1 class="index-title">Results for <%= params[:query] %></h1>
   <% else %>
@@ -6,9 +6,9 @@
   <% end %>
 
   <div class="index-content">
-    <div class="cards">
+    <div class="row">
       <% @venues.each_with_index do |venue, index| %>
-        <div class="col-md-4 mb-4">
+        <div class="col-md-6 mb-6">
           <div class="index-card">
             <% if venue.photos.attached? %>
               <div class="index-card-img-container">
@@ -30,7 +30,6 @@
     </div>
 
     <div class="map-container">
-      <h2 class="map-title">Or Browse yourself through our map...</h2>
       <div
         data-controller="map"
         id="map"
@@ -62,9 +61,11 @@
   }
 
   .index-content {
-    display: flex;
-    align-items: flex-start;
-    gap: 30px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 30px
+    /* align-items: flex-start; */
+    /* gap: 30px; */
   }
 
   .cards {
@@ -83,10 +84,10 @@
     flex: 1.5;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-right: 20px;
-    margin-top: 20px;
+    /* justify-content: center; */
+    /* align-items: center; */
+    /* margin-right: 20px;
+    margin-top: 20px; */
   }
 
   .map-title {
@@ -94,8 +95,10 @@
   }
 
   #map {
-    width: 100%;
-    height: 500px;
+    /* width: 100%; */
+    height: 65vh;
+    position:sticky;
+    top: 0;
   }
 </style>
 

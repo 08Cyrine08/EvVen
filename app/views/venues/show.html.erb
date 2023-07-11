@@ -1,6 +1,7 @@
 <% rat = [] %>
 <% size = @venue.reviews.size %>
 
+
 <div data-controller="booking-form">
   <div  class="container position-relative mt-5" style="height: 640px; z-index: 1;">
     <h1 style="color: black;"><%= @venue.name %></h1>
@@ -203,6 +204,52 @@
   <%end%>
 </div>
 
+<div class="show-container">
+  <div class="venue-description">
+  </div>
+  <div class="map-container">
+    <h2 class="map-title">I'm here!</h2>
+    <div
+      data-controller="map"
+      id="map"
+      data-map-markers-value="<%= @markers.to_json %>"
+      data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"
+    ></div>
+  </div>
+</div>
+
+<style>
+  .show-container {
+    display: flex;
+    align-items: flex-start;
+    gap: 30px;
+  }
+  .venue-description {
+    flex: 1;
+  }
+  .map-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    /* flex-direction: column;
+    justify-content: center; */
+    align-items: center;
+    width: 500px;
+    height: 500px;
+    flex: 1.5;
+    display: flex;
+    flex-direction: column;
+    border-radius: 50%;
+  }
+  .map-title {
+  }
+
+  #map {
+    width: 100%;
+    height: 100%;
+  }
+</style>
+
 <script>
 
   document.querySelectorAll(".viewrev").forEach( (e) => {
@@ -260,4 +307,24 @@
     document.querySelector("#tags-form").classList.toggle("d-none");
   })
 
+
+/*   mapboxgl.accessToken = this.apiKeyValue
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const markers = <%= raw @markers.to_json %>;
+
+    const map = new mapboxgl.Map({
+      container: 'map',
+      style: 'mapbox://styles/mapbox/streets-v11',
+      center: [markers[0].lng, markers[0].lat],
+      zoom: 12
+    });
+
+    markers.forEach((marker) => {
+      new mapboxgl.Marker()
+        .setLngLat([marker.lng, marker.lat])
+        .addTo(map);
+    });
+  });
+ */
 </script>
