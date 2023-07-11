@@ -92,7 +92,7 @@ class VenuesController < ApplicationController
     @reviews = Review.all
     @tag = Tag.new
     @user = current_user
-
+    @markers = [{ lat: @venue.latitude, lng: @venue.longitude }]
   end
 
   def new
