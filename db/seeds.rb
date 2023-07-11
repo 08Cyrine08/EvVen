@@ -48,7 +48,7 @@ rexclub = Venue.new(
   if you are one of those partygoers who love to end your night by saying hello
   to the sunrise, well, Rex Club is the place you want to be.",
   price: 300
-)
+
 rexclub.photos.attach(io: rexclub1, filename: "rexclub-1", content_type: "image/png")
 rexclub.photos.attach(io: rexclub2, filename: "rexclub-2", content_type: "image/png")
 rexclub.user = user1
