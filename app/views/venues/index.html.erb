@@ -1,5 +1,5 @@
 <div class="container">
-  <% if params[:query] && params[:query] != ""%>
+  <% if params[:query] && params[:query] != "" %>
     <h1 class="index-title">Results for <%= params[:query] %></h1>
   <% else %>
     <h1 class="index-title my-4">Venues across our Globe.</h1>
@@ -7,35 +7,42 @@
 
   <div class="index-content">
     <div class="row">
-      <% @venues.each_with_index do |venue, index| %>
-        <div class="col-md-6 mb-6">
-          <div class="index-card">
-            <% if venue.photos.attached? %>
-              <div class="index-card-img-container">
-                <img src="<%= url_for(venue.photos[0]) %>" class="index-card-img">
+      <div class="col-md-6">
+        <div class="cards">
+          <% @venues.each_with_index do |venue, index| %>
+            <div class="index-card">
+              <% if venue.photos.attached? %>
+                <div class="index-card-img-container">
+                  <div class="index-card-img-inner">
+                    <img src="<%= url_for(venue.photos[0]) %>" class="index-card-img">
+                  </div>
+                </div>
+              <% else %>
+                <div class="index-card-img-container">
+                  <div class="index-card-img-inner">
+                    <img src="https://res.cloudinary.com/dulcgeiwe/image/upload/v1687711960/avatar-icon_nyvbwv.png" class="index-card-img">
+                  </div>
+                </div>
+              <% end %>
+              <div class="index-card-overlay">
+                <h5 class="index-card-title" style="font-family: 'Karla', serif;"><%= venue.name %></h5>
+                <p class="index-card-text" style="font-family: 'Spectral', serif;"><%= venue.location %></p>
+                <a href="<%= venue_path(venue) %>" class="btn btn-dark">View details</a>
               </div>
-            <% else %>
-              <div class="index-card-img-container">
-                <img src="https://res.cloudinary.com/dulcgeiwe/image/upload/v1687711960/avatar-icon_nyvbwv.png" class="index-card-img">
-              </div>
-            <% end %>
-            <div class="index-card-overlay">
-              <h5 class="index-card-title"><%= venue.name %></h5>
-              <p class="index-card-text"><%= venue.location %></p>
-              <a href="<%= venue_path(venue) %>" class="btn btn-dark">View details</a>
             </div>
-          </div>
+          <% end %>
         </div>
-      <% end %>
-    </div>
-
-    <div class="map-container">
-      <div
-        data-controller="map"
-        id="map"
-        data-map-markers-value="<%= @markers.to_json %>"
-        data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"
-      ></div>
+      </div>
+      <div class="col-md-6">
+        <div class="map-container">
+          <div
+            data-controller="map"
+            id="map"
+            data-map-markers-value="<%= @markers.to_json %>"
+            data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"
+          ></div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -54,53 +61,6 @@
 
   <button id="open-chatbot" class="btn btn-primary position-absolute end-0 m-2" style="cursor:pointer; bottom: 0px;">Chatbot</button>
 </div>
-
-<style>
-  .index-container {
-    position: relative;
-  }
-
-  .index-content {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 30px
-    /* align-items: flex-start; */
-    /* gap: 30px; */
-  }
-
-  .cards {
-    flex: 1;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
-    margin-left: 20px;
-  }
-
-  .index-card {
-    flex: 1 0 45%;
-  }
-
-  .map-container {
-    flex: 1.5;
-    display: flex;
-    flex-direction: column;
-    /* justify-content: center; */
-    /* align-items: center; */
-    /* margin-right: 20px;
-    margin-top: 20px; */
-  }
-
-  .map-title {
-    margin-bottom: 10px;
-  }
-
-  #map {
-    /* width: 100%; */
-    height: 65vh;
-    position:sticky;
-    top: 0;
-  }
-</style>
 
 <script>
   document.querySelector("#open-chatbot").addEventListener("click", () => {

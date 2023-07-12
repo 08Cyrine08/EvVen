@@ -3,33 +3,58 @@
   margin-bottom: 20px;
   max-width: 100%;
   overflow: hidden;
+  position: relative;
 }
 
 .index-title {
-  font-family: 'IBM Plex Mono', sans-serif;
+  font-family: 'Karla', sans-serif;
   margin-top: 0;
+  word-wrap: break-word;
+}
+
+.index-content {
+  margin-top: 30px;
+}
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-left: -15px;
 }
 
 .index-card {
-  width: 100%;
-  height: 369px;
+  width: calc(50% - 15px);
+  height: 0;
+  padding-top: 60%;
   position: relative;
-  margin-bottom: 20px;
   overflow: hidden;
 }
 
 .index-card-img-container {
-  position: relative;
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   overflow: hidden;
 }
 
+.index-card-img-inner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
 .index-card-img {
-  width: auto;
+  width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center;
 }
 
 .index-card-overlay {
@@ -46,20 +71,45 @@
   padding: 10px;
   text-align: center;
   color: white;
+  opacity: 1;
 }
 
 .index-card-title,
 .index-card-text {
   margin-bottom: 10px;
+  font-family: 'Spectral', serif;
 }
 
-.index-card-body {
+.map-container {
+  height: 500px;
   position: relative;
-  z-index: 1;
+  overflow: hidden;
+  margin-top: 30px;
+}
+
+#map {
+  width: 100%;
+  height: 100%;
 }
 
 @media (max-width: 768px) {
+  .index-title {
+    font-size: 24px;
+  }
+
   .index-card {
     width: 100%;
+    height: 0;
+    padding-top: 56.25%;
+    margin-bottom: 20px;
+  }
+
+  .index-card-img-container,
+  .index-card-img-inner {
+    height: 100%;
+  }
+
+  .map-container {
+    height: 300px;
   }
 }
