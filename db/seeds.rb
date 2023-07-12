@@ -177,5 +177,4 @@ xoyo.photos.attach(io: xoyo2, filename: "xoyo-2", content_type: "image/jpeg")
 xoyo.user = user1
 xoyo.save
 
-
 puts "All done!"
