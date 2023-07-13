@@ -54,8 +54,8 @@ rexclub.photos.attach(io: rexclub2, filename: "rexclub-2", content_type: "image/
 rexclub.user = user1
 rexclub.save
 
-concrete1 = URI.open("https://res.cloudinary.com/dulcgeiwe/image/upload/v1689025883/rexclub_1_oveh4a.jpg")
-concrete2 = URI.open("https://res.cloudinary.com/dulcgeiwe/image/upload/v1689025904/rexclub_2_uftr3z.jpg")
+concrete1 = URI.open("https://res.cloudinary.com/dulcgeiwe/image/upload/v1689193761/concrete_1_o4zrtg.jpg")
+concrete2 = URI.open("https://res.cloudinary.com/dulcgeiwe/image/upload/v1689193767/concrete_2_abpzxi.jpg")
 concrete = Venue.new(
   name: "Concrete",
   location: "69 Port De La Rapée, 75012 Paris, France",
@@ -67,8 +67,8 @@ concrete.photos.attach(io: concrete2, filename: "concrete-2", content_type: "ima
 concrete.user = user1
 concrete.save
 
-le_showcase1 = URI.open("https://res.cloudinary.com/dulcgeiwe/image/upload/v1689025883/rexclub_1_oveh4a.jpg")
-le_showcase2 = URI.open("https://res.cloudinary.com/dulcgeiwe/image/upload/v1689025904/rexclub_2_uftr3z.jpg")
+le_showcase1 = URI.open("https://res.cloudinary.com/dulcgeiwe/image/upload/v1689193827/le_showcase_1_wrtbjf.webp")
+le_showcase2 = URI.open("https://res.cloudinary.com/dulcgeiwe/image/upload/v1689193833/le_showcase_2_rco2j2.jpg")
 le_showcase = Venue.new(
   name: "Le Showcase",
   location: "Pont Alexandre III; Port des Champs Elysées; 75008; Paris; France",
@@ -80,8 +80,8 @@ le_showcase.photos.attach(io: le_showcase2, filename: "le-showcase-2", content_t
 le_showcase.user = user1
 le_showcase.save
 
-le_wanderlust1 = URI.open("https://res.cloudinary.com/dulcgeiwe/image/upload/v1689025883/rexclub_1_oveh4a.jpg")
-le_wanderlust2 = URI.open("https://res.cloudinary.com/dulcgeiwe/image/upload/v1689025904/rexclub_2_uftr3z.jpg")
+le_wanderlust1 = URI.open("https://res.cloudinary.com/dulcgeiwe/image/upload/v1689193867/le_wanderlust_1_nwt2vr.jpg")
+le_wanderlust2 = URI.open("https://res.cloudinary.com/dulcgeiwe/image/upload/v1689193872/le_wanderlust_2_nlwjbi.jpg")
 le_wanderlust = Venue.new(
   name: "Le Wanderlust",
   location: "32 quai d'Austerlitz, 75013 Paris",
@@ -93,8 +93,8 @@ le_wanderlust.photos.attach(io: le_wanderlust2, filename: "le-wanderlust-2", con
 le_wanderlust.user = user1
 le_wanderlust.save
 
-social_club1 = URI.open("https://res.cloudinary.com/dulcgeiwe/image/upload/v1689025883/rexclub_1_oveh4a.jpg")
-social_club2 = URI.open("https://res.cloudinary.com/dulcgeiwe/image/upload/v1689025904/rexclub_2_uftr3z.jpg")
+social_club1 = URI.open("https://res.cloudinary.com/dulcgeiwe/image/upload/v1689193925/social_club_1_cixcv6.webp")
+social_club2 = URI.open("https://res.cloudinary.com/dulcgeiwe/image/upload/v1689193930/social_club_2_ukpo5w.jpg")
 social_club = Venue.new(
   name: "Social Club",
   location: "142 rue Montmartre, 75002 Paris",
@@ -176,5 +176,72 @@ xoyo.photos.attach(io: xoyo1, filename: "xoyo-1", content_type: "image/jpeg")
 xoyo.photos.attach(io: xoyo2, filename: "xoyo-2", content_type: "image/jpeg")
 xoyo.user = user1
 xoyo.save
+
+de_school1 = URI.open("https://res.cloudinary.com/dulcgeiwe/image/upload/v1689194299/de_school_1_m2jgjw.jpg")
+de_school2 = URI.open("https://res.cloudinary.com/dulcgeiwe/image/upload/v1689194311/de_school_2_maj0wy.jpg")
+de_school = Venue.new(
+  name: "De School",
+  location: "Doctor Jan van Breemenstraat 1, 1056 AB Amsterdam, Netherlands",
+  description: "De School is a popular club in Amsterdam, known for its underground music scene and diverse lineup of DJs. It is located in a former school building and offers a unique and immersive clubbing experience.",
+  price: 150
+)
+de_school.photos.attach(io: de_school1, filename: "de_school-1", content_type: "image/jpeg")
+de_school.photos.attach(io: de_school2, filename: "de_school-2", content_type: "image/jpeg")
+de_school.user = user1
+de_school.save
+
+shelter1 = URI.open("https://res.cloudinary.com/dulcgeiwe/image/upload/v1689194374/shelter_1_yr4bbw.jpg")
+shelter2 = URI.open("https://res.cloudinary.com/dulcgeiwe/image/upload/v1689194380/shelter_2_iiixnl.jpg")
+shelter = Venue.new(
+  name: "Shelter",
+  location: "Overhoeksplein 3, 1031 KS Amsterdam, Netherlands",
+  description: "Shelter is a renowned club in Amsterdam, offering a cutting-edge sound system and a focus on underground electronic music. It features both local and international DJs, providing an unforgettable clubbing experience.",
+  price: 180
+)
+shelter.photos.attach(io: shelter1, filename: "shelter-1", content_type: "image/jpeg")
+shelter.photos.attach(io: shelter2, filename: "shelter-2", content_type: "image/jpeg")
+shelter.user = user1
+shelter.save
+
+melkweg1 = URI.open("https://res.cloudinary.com/dulcgeiwe/image/upload/v1689194422/melkweg_2_ezzvpb.jpg")
+melkweg2 = URI.open("https://res.cloudinary.com/dulcgeiwe/image/upload/v1689194415/melkweg_1_hpsjll.jpg")
+melkweg = Venue.new(
+  name: "Melkweg",
+  location: "Lijnbaansgracht 234A, 1017 PH Amsterdam, Netherlands",
+  description: "Melkweg is a versatile music venue in Amsterdam, hosting a wide range of performances including live music concerts, club nights, and cultural events. It has multiple halls and a vibrant atmosphere.",
+  price: 120
+)
+melkweg.photos.attach(io: melkweg1, filename: "melkweg-1", content_type: "image/jpeg")
+melkweg.photos.attach(io: melkweg2, filename: "melkweg-2", content_type: "image/jpeg")
+melkweg.user = user1
+melkweg.save
+
+claire1 = URI.open("https://res.cloudinary.com/dulcgeiwe/image/upload/v1689194471/claire_1_adxshn.webp")
+claire2 = URI.open("https://res.cloudinary.com/dulcgeiwe/image/upload/v1689194476/claire_2_asfkvz.jpg")
+claire = Venue.new(
+  name: "Claire",
+  location: "Rembrandtplein 17, 1017 CT Amsterdam, Netherlands",
+  description: "Claire is a vibrant and intimate club located in the heart of Amsterdam. It showcases a variety of electronic music genres and hosts both renowned and emerging artists, offering an energetic and inclusive clubbing experience.",
+  price: 100
+)
+claire.photos.attach(io: claire1, filename: "claire-1", content_type: "image/jpeg")
+claire.photos.attach(io: claire2, filename: "claire-2", content_type: "image/jpeg")
+claire.user = user1
+claire.save
+
+paradiso1 = URI.open("https://res.cloudinary.com/dulcgeiwe/image/upload/v1689194541/paradiso_2_br8lmb.jpg")
+paradiso2 = URI.open("https://res.cloudinary.com/dulcgeiwe/image/upload/v1689194534/paradiso_1_t4jbhc.jpg")
+paradiso = Venue.new(
+  name: "Paradiso",
+  location: "Weteringschans 6-8, 1017 SG Amsterdam, Netherlands",
+  description: "Paradiso is a legendary music venue and cultural center in Amsterdam, known for its diverse programming and iconic architecture. It hosts a wide range of events, including concerts, club nights, and theatrical performances.",
+  price: 140
+)
+paradiso.photos.attach(io: paradiso1, filename: "paradiso-1", content_type: "image/jpeg")
+paradiso.photos.attach(io: paradiso2, filename: "paradiso-2", content_type: "image/jpeg")
+paradiso.user = user1
+paradiso.save
+
+
 
 puts "All done!"
