@@ -242,6 +242,136 @@ paradiso.photos.attach(io: paradiso2, filename: "paradiso-2", content_type: "ima
 paradiso.user = user1
 paradiso.save
 
+razzmatazz1 = URI.open("https://res.cloudinary.com/dulcgeiwe/image/upload/v1689271404/razmattaz_2_tezxuw.jpg")
+razzmatazz2 = URI.open("https://res.cloudinary.com/dulcgeiwe/image/upload/v1689271404/razmattaz_1_nauxtt.jpg")
+razzmatazz = Venue.new(
+  name: "Razzmatazz",
+  location: "Carrer dels Almogàvers, 122, 08018 Barcelona, Spain",
+  description: "Razzmatazz is one of Barcelona's most iconic clubs, featuring multiple rooms with different music styles. It hosts a variety of concerts and club nights, attracting both local and international artists.",
+  price: 180
+)
+razzmatazz.photos.attach(io: razzmatazz1, filename: "razzmatazz-1", content_type: "image/jpeg")
+razzmatazz.photos.attach(io: razzmatazz2, filename: "razzmatazz-2", content_type: "image/jpeg")
+razzmatazz.user = user1
+razzmatazz.save
+
+apolo1 = URI.open("https://res.cloudinary.com/dulcgeiwe/image/upload/v1689271450/apolo1_vcp4ui.jpg")
+apolo2 = URI.open("https://res.cloudinary.com/dulcgeiwe/image/upload/v1689271450/apolo2_bdwrhl.png")
+apolo = Venue.new(
+  name: "Apolo",
+  location: "Carrer Nou de la Rambla, 113, 08004 Barcelona, Spain",
+  description: "Apolo is a popular venue in Barcelona, known for its diverse programming including live music concerts, DJ sets, and themed parties. It offers a vibrant and energetic atmosphere.",
+  price: 150
+)
+apolo.photos.attach(io: apolo1, filename: "apolo-1", content_type: "image/jpeg")
+apolo.photos.attach(io: apolo2, filename: "apolo2", content_type: "image/jpeg")
+apolo.user = user2
+apolo.save
+
+pacha_barcelona1 = URI.open("https://res.cloudinary.com/dulcgeiwe/image/upload/v1689271483/pacha1_y9uxef.jpg")
+pacha_barcelona2 = URI.open("https://res.cloudinary.com/dulcgeiwe/image/upload/v1689271483/pacha2_xdgvsm.jpg")
+pacha_barcelona = Venue.new(
+  name: "Pacha Barcelona",
+  location: "Ramón Trias Fargas, 2, 08005 Barcelona, Spain",
+  description: "Pacha Barcelona is part of the renowned Pacha brand and is located near the beach. It offers a stylish and luxurious environment, hosting world-class DJs and providing an unforgettable clubbing experience.",
+  price: 200
+)
+pacha_barcelona.photos.attach(io: pacha_barcelona1, filename: "pacha_barcelona-1", content_type: "image/jpeg")
+pacha_barcelona.photos.attach(io: pacha_barcelona2, filename: "pacha_barcelona-2", content_type: "image/jpeg")
+pacha_barcelona.user = user1
+pacha_barcelona.save
+
+input_high_fidelity1 = URI.open("https://res.cloudinary.com/dulcgeiwe/image/upload/v1689271516/inputhigh1_hmietb.jpg")
+input_high_fidelity2 = URI.open("https://res.cloudinary.com/dulcgeiwe/image/upload/v1689271516/inputhigh2_re6upt.jpg")
+input_high_fidelity = Venue.new(
+  name: "INPUT High Fidelity Dance Club",
+  location: "Avinguda del Paral·lel, 37, 08004 Barcelona, Spain",
+  description: "INPUT High Fidelity Dance Club is a well-known techno club in Barcelona. It features top-notch sound systems and hosts some of the best techno DJs, creating an immersive experience for electronic music enthusiasts.",
+  price: 160
+)
+input_high_fidelity.photos.attach(io: input_high_fidelity1, filename: "input_high_fidelity-1", content_type: "image/jpeg")
+input_high_fidelity.photos.attach(io: input_high_fidelity2, filename: "input_high_fidelity-2", content_type: "image/jpeg")
+input_high_fidelity.user = user1
+input_high_fidelity.save
+
+cdlc1 = URI.open("https://res.cloudinary.com/dulcgeiwe/image/upload/v1689271547/cdlc_xxcy6z.jpg")
+cdlc2 = URI.open("https://res.cloudinary.com/dulcgeiwe/image/upload/v1689271547/cdlc2_gngcva.jpg")
+cdlc = Venue.new(
+  name: "CDLC",
+  location: "Passeig Marítim de la Barceloneta, 32, 08003 Barcelona, Spain",
+  description: "CDLC is a beachfront club in Barcelona, offering a unique blend of music, entertainment, and culinary experiences. It combines a vibrant nightlife atmosphere with a stylish restaurant and lounge area.",
+  price: 180
+)
+cdlc.photos.attach(io: cdlc1, filename: "cdlc-1", content_type: "image/jpeg")
+cdlc.photos.attach(io: cdlc2, filename: "cdlc-2", content_type: "image/jpeg")
+cdlc.user = user1
+cdlc.save
+
+joy_eslava1 = URI.open("https://res.cloudinary.com/dulcgeiwe/image/upload/v1689271578/joyesleva2_pswcic.jpg")
+joy_eslava2 = URI.open("https://res.cloudinary.com/dulcgeiwe/image/upload/v1689271578/joyesleva1_djeczx.jpg")
+joy_eslava = Venue.new(
+  name: "Joy Eslava",
+  location: "Calle del Arenal, 11, 28013 Madrid, Spain",
+  description: "Joy Eslava is a historic club in Madrid, known for its elegant interior and a mix of music genres including pop, rock, and electronic. It has a long-standing reputation as a premier nightlife destination in the city.",
+  price: 150
+)
+joy_eslava.photos.attach(io: joy_eslava1, filename: "joy_eslava-1", content_type: "image/jpeg")
+joy_eslava.photos.attach(io: joy_eslava2, filename: "joy_eslava-2", content_type: "image/jpeg")
+joy_eslava.user = user1
+joy_eslava.save
+
+teatro_kapital1 = URI.open("https://res.cloudinary.com/dulcgeiwe/image/upload/v1689271612/teatrokapital1_fsfmkc.jpg")
+teatro_kapital2 = URI.open("https://res.cloudinary.com/dulcgeiwe/image/upload/v1689271612/teatro_kapital2_yekwmi.jpg")
+teatro_kapital = Venue.new(
+  name: "Teatro Kapital",
+  location: "Calle de Atocha, 125, 28012 Madrid, Spain",
+  description: "Teatro Kapital is a multi-level nightclub located in a former theater building. Each floor has a distinct music style, providing a diverse clubbing experience. It is known for its extravagant atmosphere and large dance floors.",
+  price: 200
+)
+teatro_kapital.photos.attach(io: teatro_kapital1, filename: "teatro_kapital1", content_type: "image/jpeg")
+teatro_kapital.photos.attach(io: teatro_kapital2, filename: "teatro_kapital2", content_type: "image/jpeg")
+teatro_kapital.user = user1
+teatro_kapital.save
+
+fabrik1 = URI.open("https://res.cloudinary.com/dulcgeiwe/image/upload/v1689271640/fabrik_bcn2_wi4gek.jpg")
+fabrik2 = URI.open("https://res.cloudinary.com/dulcgeiwe/image/upload/v1689271640/fabrik_bcn1_od1ymz.jpg")
+fabrik = Venue.new(
+  name: "Fabrik",
+  location: "Av. de la Industria, 82, 28970 Humanes de Madrid, Madrid, Spain",
+  description: "Fabrik is a massive warehouse-style club located outside of Madrid. It is famous for its impressive sound and light systems, hosting large-scale electronic music events and attracting renowned DJs from around the world.",
+  price: 180
+)
+fabrik.photos.attach(io: fabrik1, filename: "fabrik1", content_type: "image/jpeg")
+fabrik.photos.attach(io: fabrik2, filename: "fabrik2", content_type: "image/jpeg")
+fabrik.user = user3
+fabrik.save
+
+goya_social_club1 = URI.open("https://res.cloudinary.com/dulcgeiwe/image/upload/v1689271686/goya1_yolo5m.jpg")
+goya_social_club2 = URI.open("https://res.cloudinary.com/dulcgeiwe/image/upload/v1689271686/goya2_h62oft.jpg")
+goya_social_club = Venue.new(
+  name: "Goya Social Club",
+  location: "Calle de Goya, 43, 28001 Madrid, Spain",
+  description: "Goya Social Club is an intimate club in Madrid, known for its focus on underground electronic music. It offers a cozy and immersive atmosphere, making it a favorite spot for music enthusiasts.",
+  price: 140
+)
+goya_social_club.photos.attach(io: goya_social_club1, filename: "goya_social_club1", content_type: "image/jpeg")
+goya_social_club.photos.attach(io: goya_social_club2, filename: "goya_social_club2", content_type: "image/jpeg")
+goya_social_club.user = user2
+goya_social_club.save
+
+mondo_disko1 = URI.open("https://res.cloudinary.com/dulcgeiwe/image/upload/v1689271714/monko2_wp1fph.jpg")
+mondo_disko2 = URI.open("https://res.cloudinary.com/dulcgeiwe/image/upload/v1689271714/monko1_krzk1a.jpg")
+mondo_disko = Venue.new(
+  name: "Mondo Disko",
+  location: "Calle de Alcalá, 20, 28014 Madrid, Spain",
+  description: "Mondo Disko is a renowned techno club in Madrid, featuring cutting-edge sounds and a lineup of international DJs. It is known for its dedicated crowd and energetic vibe, attracting techno lovers from across the city.",
+  price: 160
+)
+mondo_disko.photos.attach(io: mondo_disko1, filename: "mondo_disko1", content_type: "image/jpeg")
+mondo_disko.photos.attach(io: mondo_disko2, filename: "mondo_disko2", content_type: "image/jpeg")
+mondo_disko.user = user3
+mondo_disko.save
+
 
 
 puts "All done!"

@@ -1,108 +1,96 @@
 <% rat = [] %>
 <% size = @venue.reviews.size %>
 
-
 <div data-controller="booking-form">
-  <div  class="container position-relative mt-5" style="height: 640px; z-index: 1;">
+  <div class="container position-relative mt-5" style="height: 640px; z-index: 1;">
     <h1 style="color: black;"><%= @venue.name %></h1>
-      <% if @venue.reviews.size > 0 %>
+    <% if @venue.reviews.size > 0 %>
       <% @venue.reviews.each do |rev| %>
-      <% rat << rev.rating %>
-      <%end%>
+        <% rat << rev.rating %>
+      <% end %>
       <p><%= "⭐" * (rat.sum / size) %></p>
-      <%end%>
+    <% end %>
 
     <p style="color: black;"><strong><%= @venue.location %></strong></p>
-
-
 
     <% if policy(@venue).edit? %>
       <%= link_to '🖊️', edit_venue_path(@venue), class: "text-decoration-none pb-4 e" %>
     <% end %>
 
-
     <% if policy(@venue).destroy? %>
-    <%= link_to '🗑️',
-      venue_path(@venue),
-      class: "text-decoration-none pb-4 d",
-      data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
-
-    %>
+      <%= link_to '🗑️', venue_path(@venue), class: "text-decoration-none pb-4 d", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
     <% end %>
 
     <button id="bookings-history-btn" class="" style="background-color: transparent; border: none; color: gray;">🗒️</button>
-    <%if @venue.user === current_user %>
-    <button id="tags-btn" class="" style="background-color: transparent; border: none; color: gray;">#️⃣</button>
+    <% if @venue.user === current_user %>
+      <button id="tags-btn" class="" style="background-color: transparent; border: none; color: gray;">#️⃣</button>
     <% end %>
     <span class="d-none" id="h">Add tag</span>
     <span class="d-none" id="t">Booking History</span>
     <span class="d-none" id="e">Edit venue</span>
     <span class="d-none" id="d">Delete venue</span>
 
-  <div style="width: 400px;">
-    <ul style="display: flex; flex-direction: row; gap: 15px; flex-wrap: wrap;">
-      <% @venue.tags.each do |tag| %>
-        <li class="text-center mt-4" style="list-style: none; height: 30px; width: 80px; background-color: darkblue; border-radius: 15px; color: white; position: relative; ">
-        <%= tag.text %>
-        <% if policy(tag).destroy? %>
-        <div style="background-color: black; color: white; border-radius: 50%; width: 25px; height: 25px; position: absolute; top: -10px; right: -10px; z-index: 3;">
-        <%= link_to 'X',
-              "/tags/#{tag.id}",
-              class: "text-decoration-none",
-              data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
-        %></div>
+    <div style="width: 400px;">
+      <ul style="display: flex; flex-direction: row; gap: 15px; flex-wrap: wrap;">
+        <% @venue.tags.each do |tag| %>
+          <li class="text-center mt-4" style="list-style: none; height: 30px; width: 80px; background-color: darkblue; border-radius: 15px; color: white; position: relative;">
+            <%= tag.text %>
+            <% if policy(tag).destroy? %>
+              <div style="background-color: black; color: white; border-radius: 50%; width: 25px; height: 25px; position: absolute; top: -10px; right: -10px; z-index: 3;">
+                <%= link_to 'X', "/tags/#{tag.id}", class: "text-decoration-none", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+              </div>
+            <% end %>
+          </li>
         <% end %>
-        </li>
-      <%end%>
-    </ul>
-  </div>
-
-  <div id="bookings-history" class="position-absolute start-0 p-5 d-none mb-5" style="width: 300px; height: 350px; background-color: white; z-index: 2; overflow: auto;">
-    <% @venue.bookings.each do |booking| %>
-      <h3><strong style="color: darkblue;"><%= booking.user.first_name %> <%= booking.user.last_name %></strong> has booked this venue </h3>
-
-      <p>From <%= booking.booking_start_date %></p>
-      <p>To <%= booking.booking_end_date %></p>
-      <p style="border-bottom: solid 1px gray;">For <%= booking.amount_guests %> people. </p>
-    <% end %>
-  </div>
-
-  <div id="tags-form" class="position-absolute start-0 p-4 shadow p-3 mb-5 rounded d-none" style="width: 200px; height: 200px; background-color: transparent; z-index: 2;">
-    <%= simple_form_for [@venue, @tag] do |f| %>
-    <%= f.input :text, html5: true, input_html: { class: "bg-transparent border border-primary"}%>
-    <%= f.submit 'Add', :action => :create, :method => :post, class:"btn btn btn-dark text center w-100 text-white fw-bold mt-2 mb-2" %>
-    <% end %>
-  </div>
-
-  <div data-booking-form-target="review" class="position-absolute start-0 p-4 d-none" style="width: 400px; height: 450px; background-color: white; z-index: 2;">
-    <div class="position-relative" style="width: 350px; height: 30px;">
-    <span class="position-absolute end-0" data-booking-form-target="closereview" data-action="click->booking-form#closeReview"><i class="fa-solid fa-circle-xmark" style="color: #0d0d0d; cursor: pointer;"></i></span>
+      </ul>
     </div>
 
-    <h2 class="text-center">Give us your feedback, reviews are anonymous</h2>
-     <%= simple_form_for [@venue, @review] do |f| %>
-    <%= f.input :text, :label =>"Review", html5: true%>
-    <%= f.input :rating, :label =>"Rating", html5: true%>
-    <%= f.submit 'Add review', :action => :create, :method => :post, class:"btn btn btn-dark text center w-100 text-white fw-bold mt-4" %>
-    <% end %>
-  </div>
+    <div id="bookings-history" class="position-absolute start-0 p-5 d-none mb-5" style="width: 300px; height: 350px; background-color: white; z-index: 2; overflow: auto;">
+      <% @venue.bookings.each do |booking| %>
+        <h3><strong style="color: darkblue;"><%= booking.user.first_name %> <%= booking.user.last_name %></strong> has booked this venue </h3>
+        <p>From <%= booking.booking_start_date %></p>
+        <p>To <%= booking.booking_end_date %></p>
+        <p style="border-bottom: solid 1px gray;">For <%= booking.amount_guests %> people. </p>
+      <% end %>
+    </div>
 
-  <div class="container position-absolute start-50 top-0 " style="width: 600px; height: 300px;">
-    <% if @venue.photos.attached? %>
+    <div id="tags-form" class="position-absolute start-0 p-4 shadow p-3 mb-5 rounded d-none" style="width: 200px; height: 200px; background-color: transparent; z-index: 2;">
+      <%= simple_form_for [@venue, @tag] do |f| %>
+        <%= f.input :text, html5: true, input_html: { class: "bg-transparent border border-primary"} %>
+        <%= f.submit 'Add', :action => :create, :method => :post, class:"btn btn btn-dark text center w-100 text-white fw-bold mt-2 mb-2" %>
+      <% end %>
+    </div>
+
+    <div data-booking-form-target="review" class="position-absolute start-0 p-4 d-none" style="width: 400px; height: 450px; background-color: white; z-index: 2;">
+      <div class="position-relative" style="width: 350px; height: 30px;">
+        <span class="position-absolute end-0" data-booking-form-target="closereview" data-action="click->booking-form#closeReview">
+          <i class="fa-solid fa-circle-xmark" style="color: #0d0d0d; cursor: pointer;"></i>
+        </span>
+      </div>
+      <h2 class="text-center">Give us your feedback, reviews are anonymous</h2>
+      <%= simple_form_for [@venue, @review] do |f| %>
+        <%= f.input :text, :label =>"Review", html5: true %>
+        <%= f.input :rating, :label =>"Rating", html5: true %>
+        <%= f.submit 'Add review', :action => :create, :method => :post, class:"btn btn btn-dark text center w-100 text-white fw-bold mt-4" %>
+      <% end %>
+    </div>
+
+    <div class="container position-absolute start-50 top-0 " style="width: 600px; height: 300px;">
+      <% if @venue.photos.attached? %>
         <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
           <div class="carousel-inner">
             <% if @venue.photos.size >= 1 %>
-            <% @venue.photos.each_with_index do |photo, index| %>
-            <div class="carousel-item <%= index.zero? ? 'active' : '' %>" style="width: 600px; height: 300px; ">
-              <%= cl_image_tag photo.key, style: "width: 600px; height: 300px; object-fit: fit;"%>
-            </div>
-            <% end %>
+              <% @venue.photos.each_with_index do |photo, index| %>
+                <div class="carousel-item <%= index.zero? ? 'active' : '' %>" style="width: 600px; height: 300px;">
+                  <%= cl_image_tag photo.key, style: "width: 600px; height: 300px; object-fit: fit;" %>
+                </div>
+              <% end %>
             <% else %>
-            <div class="carousel-item active">
-              <div class="text-center p-5" style="height: 300px; background-color: black;">
-                <span class="" style="color: white;">No photos available.</span>
+              <div class="carousel-item active">
+                <div class="text-center p-5" style="height: 300px; background-color: black;">
+                  <span class="" style="color: white;">No photos available.</span>
+                </div>
               </div>
-            </div>
             <% end %>
           </div>
           <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
@@ -114,101 +102,99 @@
             <span class="visually-hidden">Next</span>
           </button>
         </div>
-      <%end%>
+      <% end %>
     </div>
 
-  <p class="position-absolute top-50 start-50 d-flex flex-column" style="color: black;">
-  <span class="mb-2">Available during: </span>
-  <span class="mb-2">From: 💲 <%= @venue.price %></span>
+    <p class="position-absolute top-50 start-50 d-flex flex-column" style="color: black;">
+      <span class="mb-2">Available during:</span>
+      <span class="mb-2">From: 💲 <%= @venue.price %></span>
+      <span style="z-index: 1;"><%= @venue.description %></span>
+    </p>
 
-  <span style="z-index: 1;"><%= @venue.description %></span>
-  </p>
+    <p class="position-absolute bottom-0 start-0" style="width: 200px; height: 30px; font-size:30px;">
+      <%= link_to venues_path, class: "pt-1", style: "width: 30px; height: 30px; color: black;" do %>
+        <i class="fa-solid fa-arrow-left"></i>
+      <% end %>
+    </p>
 
-
-  <div data-booking-form-target="form" class="position-absolute end-0 p-4 d-none" style="width: 400px; height: 450px; background-color: white; z-index: 2;">
-    <div class="position-relative" style="width: 350px; height: 30px;">
-    <span class="position-absolute end-0" data-booking-form-target="closeform" data-action="click->booking-form#closeForm"><i class="fa-solid fa-circle-xmark" style="color: #0d0d0d; cursor: pointer;"></i></span>
-    </div>
-
-    <h2 class="text-center">Booking form</h2>
-    <%= simple_form_for [@venue, @booking], data: { controller: 'flatpickr' } do |f| %>
-    <%= f.input :booking_start_date, as: :string, :label =>"Choose start date", html5: true, input_html: { data: { flatpickr_target: "startDate" } }%>
-    <%= f.input :booking_end_date, as: :string, :label =>"Choose end date", html5: true, input_html: { data: { flatpickr_target: "endDate" } }%>
-    <%= f.input :amount_guests, :label =>"# of Guests", html5: true%>
-    <%= f.submit 'Send booking request', :action => :create, :method => :post, class:"btn btn btn-dark text center w-100 text-white fw-bold mt-4" %>
-    <% end %>
-  </div>
-
-
-  <p class="position-absolute bottom-0 start-0" style="width: 200px; height: 30px; font-size:30px;">
-
-    <a href="/venues" class="pt-1" style="width: 30px; height: 30px; color: black;"><i class="fa-solid fa-arrow-left"></i></a>
-
-  </p>
-
-  <p class="position-absolute bottom-0 end-0 d-flex justify-content-around" style="width: 500px; height: 30px;">
-
+    <p class="position-absolute bottom-0 end-0 d-flex justify-content-around" style="width: 500px; height: 30px;">
       <% if @venue.user_id === @user.id %>
-      <%= link_to "Customers chat",
-        "#", class: "btn btn-secondary pb-4"
-      %>
+        <%= link_to "Customers chat", "#", class: "btn btn-secondary pb-4" %>
       <% else %>
-      <button class="btn btn-dark pb-4" data-booking-form-target="openreview" data-action="click->booking-form#openReview">Leave review</button>
+        <button class="btn btn-dark pb-4" data-booking-form-target="openreview" data-action="click->booking-form#openReview">Leave review</button>
+        <%= link_to "Chat with owner", "#", class: "btn btn-secondary pb-4" %>
+        <button class="btn btn-dark pb-4" data-booking-form-target="openform" data-action="click->booking-form#openForm">Book now!</button>
+      <% end %>
+    </p>
 
-    <%= link_to "Chat with owner",
-        "#", class: "btn btn-secondary pb-4"
-      %>
+    <div data-booking-form-target="form" class="position-fixed start-50 translate-middle p-4 shadow rounded bg-white d-none" style="width: 400px; max-height: calc(100vh - 100px); overflow-y: auto;">
+      <div class="position-relative" style="width: 350px; height: 30px;">
+        <span class="position-absolute end-0" data-booking-form-target="closeform" data-action="click->booking-form#closeForm">
+          <i class="fa-solid fa-circle-xmark" style="color: #0d0d0d; cursor: pointer;"></i>
+        </span>
+      </div>
+      <h2 class="text-center">Booking form</h2>
+      <%= simple_form_for [@venue, @booking], data: { controller: 'flatpickr' } do |f| %>
+        <div class="mb-3">
+          <%= f.input :user_profession, label: "Your Profession" %>
+        </div>
+        <div class="mb-3">
+          <%= f.input :reason_for_booking, label: "Reason for Booking" %>
+        </div>
+        <div class="mb-3">
+          <%= f.input :booking_start_date, as: :string, :label =>"Choose start date", html5: true, input_html: { data: { flatpickr_target: "startDate" } }%>
+        </div>
+        <div class="mb-3">
+          <%= f.input :booking_end_date, as: :string, :label =>"Choose end date", html5: true, input_html: { data: { flatpickr_target: "endDate" } }%>
+        </div>
+        <div class="mb-3">
+          <%= f.input :amount_guests, :label =>"# of Guests", html5: true%>
+        </div>
+        <div class="mb-3">
+          <%= f.submit 'Send booking request', :action => :create, :method => :post, class:"btn btn btn-dark text center w-100 text-white fw-bold mt-4" %>
+        </div>
+      <% end %>
+    </div>
 
-
-    <button class="btn btn-dark pb-4" data-booking-form-target="openform" data-action="click->booking-form#openForm">Book now!</button>
-    <% end %>
-
-
-  </p>
   </div>
 
   <% if @venue.reviews.size > 0 %>
-  <div class="container my-5 me-3">
-    <h1><%= @venue.reviews.size %> reviews for <%= @venue.name %></h1>
+    <div class="container my-5 me-3">
+      <h1><%= @venue.reviews.size %> reviews for <%= @venue.name %></h1>
 
-    <div class="row">
-      <% @venue.reviews.each do |review| %>
-
-        <div class="col-4 p-5 shadow p-3 mb-5 bg-body rounded m-2 position-relative d-none"  style="height: 300px; width: 380px; border-radius: 8px;">
-              <h4><%= review.user.first_name %> <%= review.user.last_name %></h4>
-              <p class="p-3" style="height: 150px; "><%= review.text %></p>
+      <div class="row">
+        <% @venue.reviews.each do |review| %>
+          <div class="col-4 p-5 shadow p-3 mb-5 bg-body rounded m-2 position-relative d-none" style="height: 300px; width: 380px; border-radius: 8px;">
+            <h4><%= review.user.first_name %> <%= review.user.last_name %></h4>
+            <p class="p-3" style="height: 150px; "><%= review.text %></p>
             <button class="hiderev position-absolute top-0 end-0 btn btn-dark">X</button>
+          </div>
 
-        </div>
-
-        <div class="col-4 p-5 shadow p-3 mb-5 bg-body rounded m-2 position-relative"  style="height: 300px; width: 380px; border-radius: 8px;">
-            <h4><%= review.user.first_name%> <%= review.user.last_name %></h4>
-            <h4 class="mb-2"><%=  "⭐" * review.rating%></h4>
+          <div class="col-4 p-5 shadow p-3 mb-5 bg-body rounded m-2 position-relative" style="height: 300px; width: 380px; border-radius: 8px;">
+            <h4><%= review.user.first_name %> <%= review.user.last_name %></h4>
+            <h4 class="mb-2"><%=  "⭐" * review.rating %></h4>
             <small class="ms-3"><%= review.created_at.to_date %></small>
             <p class="p-3" style="height: 120px; "><%= review.text.truncate(90) %>
-            <% revUser = User.find(review.user_id) %>
-            <small class="mt-3 position-absolute" style="color: darkblue; right:25px; bottom: 70px;"><%= revUser.first_name %> <%= revUser.last_name %></small></p>
+              <% revUser = User.find(review.user_id) %>
+              <small class="mt-3 position-absolute" style="color: darkblue; right:25px; bottom: 70px;"><%= revUser.first_name %> <%= revUser.last_name %></small>
+            </p>
 
             <button class="viewrev btn btn-dark">View review</button>
             <% if policy(review).destroy? %>
-            <%= link_to '🗑️',
-              "/reviews/#{review.id}",
-              class: "text-decoration-none pb-4 position-absolute bottom-0 end-0 p-5",
-              data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
-            %>
+              <%= link_to '🗑️', "/reviews/#{review.id}", class: "text-decoration-none pb-4 position-absolute bottom-0 end-0 p-5", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
             <% end %>
-        </div>
+          </div>
         <% end %>
+      </div>
     </div>
-  </div>
-  <%end%>
+  <% end %>
 </div>
 
 <div class="show-container">
   <div class="venue-description">
   </div>
   <div class="map-container">
-    <h2 class="map-title">I'm here!</h2>
+    <h2 class="map-title"></h2>
     <div
       data-controller="map"
       id="map"
@@ -220,15 +206,11 @@
 
 <style>
   .show-container {
- /*    display: flex;
-    align-items: flex-start;
-    gap: 30px; */
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-gap: 30px
+    grid-gap: 30px;
   }
   .venue-description {
-  /*   flex: 1; */
     flex: 1;
     display: flex;
     flex-wrap: wrap;
@@ -237,13 +219,13 @@
   }
   .map-container {
     position: absolute;
-    top: 120px;
-    left: 70px;
+    top: 90px;
+    left: 140px;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 500px;
-    height: 500px;
+    width: 530px;
+    height: 530px;
     border-radius: 50%;
     flex: 1.5;
     display: flex;
@@ -259,82 +241,75 @@
   }
 </style>
 
-
 <script>
-
-  document.querySelectorAll(".viewrev").forEach( (e) => {
+  document.querySelectorAll(".viewrev").forEach((e) => {
     e.addEventListener("click", () => {
       e.parentElement.classList.add("d-none");
       e.parentElement.previousElementSibling.classList.remove("d-none");
       e.parentElement.previousElementSibling.style.overflow = "auto";
-    })
-  })
+    });
+  });
 
-  document.querySelectorAll(".hiderev").forEach( (e) => {
+  document.querySelectorAll(".hiderev").forEach((e) => {
     e.addEventListener("click", () => {
       e.parentElement.classList.add("d-none");
       e.parentElement.nextElementSibling.classList.remove("d-none");
-    })
-  })
+    });
+  });
 
   document.querySelector("#bookings-history-btn").addEventListener("click", () => {
     document.querySelector("#bookings-history").classList.toggle("d-none");
-  })
+  });
 
   document.querySelector("#bookings-history-btn").addEventListener("mouseover", () => {
     document.querySelector("#t").classList.toggle("d-none");
-  })
+  });
 
   document.querySelector("#bookings-history-btn").addEventListener("mouseout", () => {
     document.querySelector("#t").classList.toggle("d-none");
-  })
+  });
 
   document.querySelector(".e").addEventListener("mouseover", () => {
     document.querySelector("#e").classList.toggle("d-none");
-  })
+  });
 
   document.querySelector(".e").addEventListener("mouseout", () => {
     document.querySelector("#e").classList.toggle("d-none");
-  })
+  });
 
   document.querySelector(".d").addEventListener("mouseover", () => {
     document.querySelector("#d").classList.toggle("d-none");
-  })
+  });
 
   document.querySelector(".d").addEventListener("mouseout", () => {
     document.querySelector("#d").classList.toggle("d-none");
-  })
+  });
 
   document.querySelector("#tags-btn").addEventListener("mouseover", () => {
     document.querySelector("#h").classList.toggle("d-none");
-  })
+  });
 
   document.querySelector("#tags-btn").addEventListener("mouseout", () => {
     document.querySelector("#h").classList.toggle("d-none");
-  })
+  });
 
   document.querySelector("#tags-btn").addEventListener("click", () => {
     document.querySelector("#tags-form").classList.toggle("d-none");
-  })
-
-
-/*   mapboxgl.accessToken = this.apiKeyValue
-
-  document.addEventListener('DOMContentLoaded', () => {
-    const markers = <%= raw @markers.to_json %>;
-
-    const map = new mapboxgl.Map({
-      container: 'map',
-      style: 'mapbox://styles/mapbox/streets-v11',
-      center: [markers[0].lng, markers[0].lat],
-      zoom: 12
-    });
-
-    markers.forEach((marker) => {
-      new mapboxgl.Marker()
-        .setLngLat([marker.lng, marker.lat])
-        .addTo(map);
-    });
   });
- */
+
+  document.querySelector("[data-booking-form-target='openform']").addEventListener("click", () => {
+    document.querySelector("[data-booking-form-target='form']").classList.remove("d-none");
+  });
+
+  document.querySelector("[data-booking-form-target='closeform']").addEventListener("click", () => {
+    document.querySelector("[data-booking-form-target='form']").classList.add("d-none");
+  });
+
+  document.querySelector("[data-booking-form-target='openreview']").addEventListener("click", () => {
+    document.querySelector("[data-booking-form-target='review']").classList.remove("d-none");
+  });
+
+  document.querySelector("[data-booking-form-target='closereview']").addEventListener("click", () => {
+    document.querySelector("[data-booking-form-target='review']").classList.add("d-none");
+  });
 </script>
