@@ -36,23 +36,23 @@
         data-map-markers-value="<%= @markers.to_json %>"
         data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"
       ></div>
+        <button id="open-chatbot" class="btn btn-primary  m-2" style="cursor:pointer; ">Chatbot</button>
+
+        <div id="chatbot" class="mb-5" style="background-color: blue; width: 400px; border-radius: 15px; " class="p-2">
+          <div style="">
+            <div class="m-5 d-flex flex-column justify-content-around bg-success p-2 text-white bg-opacity-75" style="width: 300px">
+              <p style="color: black"><%= @answer %></p>
+            </div>
+
+            <form action="/venues" class="m-5 d-flex flex-row justify-content-around mb-4" style="width: 300px">
+              <input type="text" name="question" class="border-0 bg-success p-2 rounded h-75" style="--bs-bg-opacity: .5;">
+              <input type="submit" value="Ask!" class="btn btn-primary ms-2">
+            </form>
+          </div>
+        </div>
     </div>
   </div>
 
-  <div id="chatbot" class="position-absolute bottom-0 mx-3 mb-5" style="background-color: blue; width: 400px; border-radius: 15px; right: 75px;" class="p-2">
-    <div style="">
-      <div class="m-5 d-flex flex-column justify-content-around bg-success p-2 text-white bg-opacity-75" style="width: 300px">
-        <p style="color: black"><%= @answer %></p>
-      </div>
-
-      <form action="/venues" class="m-5 d-flex flex-row justify-content-around mb-4" style="width: 300px">
-        <input type="text" name="question" class="border-0 bg-success p-2 rounded h-75" style="--bs-bg-opacity: .5;">
-        <input type="submit" value="Ask!" class="btn btn-primary ms-2">
-      </form>
-    </div>
-  </div>
-
-  <button id="open-chatbot" class="btn btn-primary position-absolute end-0 m-2" style="cursor:pointer; bottom: 0px;">Chatbot</button>
 </div>
 
 <style>
@@ -99,6 +99,19 @@
     height: 65vh;
     position: sticky;
     top: 0;
+  }
+
+  #open-chatbot {
+    height: 40px;
+    width: 100px;
+    position: sticky;
+    top: 700px;
+  }
+
+  #chatbot {
+    position: sticky;
+    top: 500px;
+    margin-left: 130px;
   }
 </style>
 
