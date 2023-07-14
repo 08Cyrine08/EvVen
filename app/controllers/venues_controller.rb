@@ -75,7 +75,7 @@ class VenuesController < ApplicationController
       In case your questions have been answered and you do not wish to continue chatting type "quit" otherwise type "help"'
       return @answer
       elsif params[:question].downcase.match?("delete")
-      @answer = 'To delete a venur or club you must be its owner, if so you will see a trashcan/basket icon on its profile. Just click on it and you will be automatically asked to confirm your choice.
+      @answer = 'To delete a venue or club you must be its owner, if so you will see a trashcan/basket icon on its profile. Just click on it and you will be automatically asked to confirm your choice.
       In case your questions have been answered and you do not wish to continue chatting type "quit" otherwise type "help"'
       return @answer
       else

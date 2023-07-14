@@ -37,16 +37,7 @@ rexclub = Venue.new(
   options for clubbers. Rex Club has undoubtedly been one of the strongest
   driving forces of the Parisian nightlife scene. Ever since its opening 30
   years ago, Rex Club has become the go-to place for those who are avid lovers
-  of techno and electronic music. Even after so many years of being open and
-  inviting all kinds of partygoers, Rex Club has kept its authenticity
-  and simplicity intact. Not just in its décor, but everything about this club
-  shines out on its simplistic nature; right from the drinks served, to the
-  kind of music played, to the door policy. The club opens its doors from
-  Wednesdays to Saturdays, and unlike other clubs, the door policy
-  for Rex Club is refreshingly freeing. This is one of the few clubs in Paris
-  which remains open until the wee hours of the morning (7 am, actually), so
-  if you are one of those partygoers who love to end your night by saying hello
-  to the sunrise, well, Rex Club is the place you want to be.",
+  of techno and electronic music.",
   price: 300
 )
 rexclub.photos.attach(io: rexclub1, filename: "rexclub-1", content_type: "image/png")

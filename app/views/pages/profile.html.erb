@@ -7,7 +7,7 @@
       <% else %>
         <img src="https://res.cloudinary.com/dwouepnpu/image/upload/v1685980904/4378936_umm3gk.png", class= "avatar-large", alt= "dropdown menu">
      <% end %>
-    <%= link_to "Add new venue", new_venue_path, class:"btn btn-primary text-decoration-none" %>
+    <%= link_to "Add new venue", new_venue_path, class:"add-btn text-decoration-none" %>
     </div>
   </div> <br>
   <div class="user-details">
@@ -18,9 +18,9 @@
     <h2>My details</h2>
     <div class="details-box">
       <% if @user.details.present? %>
-      <p><%= @user.details %></p>
+      <p class="text-center"><%= @user.details %></p>
       <% else %>
-      <p>You haven't added your personal information...</p>
+      <p class="text-center">You haven't added your personal information...</p>
       <% end %>
     </div>
     <h2>My bookings</h2>
@@ -35,33 +35,26 @@
             <% end %>
           </ul>
           <% else %>
-            <p>You don't have any bookings yet...</p>
+            <p class="text-center">You don't have any bookings yet...</p>
         <% end %>
     </div>
     <h2>My venues</h2>
     <div class="details-box">
       <% if @user.venues.present? %>
-        <div class="row row-cols-5">
+        <div class="row card-row row-cols-5">
           <% @user.venues.each do |venue| %>
-            <div class="col card my-venue-card">
+            <div class="col my-venue-card">
               <% if venue.photos.attached? %>
-              <div class="index-card-img-container">
                 <img src="<%= url_for(venue.photos[0]) %>" class="index-card-img">
-              </div>
             <% else %>
-              <div class="index-card-img-container">
                 <img src="https://res.cloudinary.com/dulcgeiwe/image/upload/v1687711960/avatar-icon_nyvbwv.png" class="index-card-img">
-              </div>
             <% end %>
-            <div class="index-card-overlay">
-              <h5><%= link_to venue.name, venue_path(venue), class:"text-decoration-none text-white" %></h5>
-            </div>
-
+            <h5><%= link_to venue.name, venue_path(venue), class:" position-absolute top-50 start-50 translate-middle text-decoration-none text-white" %></h5>
             </div>
           <% end %>
         </div>
       <% else %>
-        <p>You haven't added new venues yet...</p>
+        <p class="text-center">You haven't added new venues yet...</p>
       <% end %>
     </div>
   </div>

@@ -10,6 +10,7 @@ class TagsController < ApplicationController
     @venue = Venue.find(params[:venue_id])
     @tag.user = @user
     @tag.venue = @venue
+    authorize @tag
     if @tag.save
       redirect_to venue_path(@venue), notice: "Tag added successfully."
     else

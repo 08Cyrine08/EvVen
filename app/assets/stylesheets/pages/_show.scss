@@ -1,0 +1,38 @@
+.carousel {
+  margin-top: 20px;
+}
+
+.arrow-back {
+  position: absolute;
+  bottom: 150px;
+  left: 50px;
+}
+
+.booking-form {
+  position: absolute;
+  top: 50vh;
+  left: 20vw;
+  z-index: 99;
+}
+
+.review-form {
+  position: absolute;
+  margin-top: 7px;
+  top: 57vh;
+  left: -25vw;
+}
+
+.icons-stuff {
+  position: absolute;
+  top: 1vh;
+  left: 17vw;
+}
+
+#bookings-history {
+  position: absolute;
+  right: 2vw;
+}
+
+// .reviews-row {
+//   z-index: 0;
+// }
