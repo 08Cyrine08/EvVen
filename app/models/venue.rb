@@ -8,7 +8,7 @@ class Venue < ApplicationRecord
   has_many :tags, dependent: :destroy
   has_many :bookings, dependent: :destroy
   has_many :reviews, dependent: :destroy
-
+  attr_accessor :availability_dates
 
   include PgSearch::Model
   pg_search_scope :search_by_name_location_description,
