@@ -2,7 +2,7 @@
 <% size = @venue.reviews.size %>
 
 <div data-controller="booking-form">
-  <div class=" venue-details container position-relative mt-5" style="height: 640px; z-index: 0;">
+  <div class=" venue-details container position-relative mt-5" style="height: 640px;">
     <h1 style="color: black;"><%= @venue.name %></h1>
     <% if @venue.reviews.size > 0 %>
       <% @venue.reviews.each do |rev| %>
@@ -70,6 +70,18 @@
       <%= f.submit 'Add', :action => :create, :method => :post, class:"btn btn btn-dark text center w-100 text-white fw-bold mt-2 mb-2" %>
       <% end %>
     </div>
+    <div data-booking-form-target="review" class="review-form p-4 d-none" style="width: 400px; height: 450px; background-color: white; z-index: 2;">
+      <div class="position-relative" style="width: 350px; height: 30px;">
+        <span class="position-absolute end-0" data-booking-form-target="closereview" data-action="click->booking-form#closeReview">
+          <i class="fa-solid fa-circle-xmark" style="color: #0d0d0d; cursor: pointer;"></i>
+        </span>
+      </div>
+      <h2 class="text-center">Share your experience!</h2>
+      <%= simple_form_for [@venue, @review] do |f| %>
+        <%= f.input :text, :label =>"Review", html5: true %>
+        <%= f.input :rating, :label =>"Rating", html5: true %>
+        <%= f.submit 'Add review', :action => :create, :method => :post, class:"btn btn btn-dark text center w-100 text-white fw-bold mt-4" %>
+      <% end %>
     </div>
 
 
@@ -112,7 +124,7 @@
     </p>
     <p class="d-flex justify-content-around" style="width: 500px; height: 30px;">
 
-    <p class="position-absolute bottom-0 end-0 d-flex justify-content-around" style="width: 500px; height: 30px;">
+    <p class=" d-flex justify-content-around" style="width: 500px; height: 30px;">
       <% if @venue.user_id === @user.id %>
         <%= link_to "Customers chat", "#", class: "btn btn-secondary pb-4" %>
       <% else %>
@@ -122,7 +134,7 @@
       <% end %>
     </p>
 
-    <div data-booking-form-target="form" class="position-fixed start-50 translate-middle p-4 shadow rounded bg-white d-none" style="width: 400px; max-height: calc(100vh - 100px); overflow-y: auto;">
+    <div data-booking-form-target="form" class="position-fixed top-50 start-50 translate-middle p-4 shadow rounded bg-white d-none" style="width: 400px; max-height: calc(100vh - 100px); overflow-y: auto; z-index:2">
       <div class="position-relative" style="width: 350px; height: 30px;">
         <span class="position-absolute end-0" data-booking-form-target="closeform" data-action="click->booking-form#closeForm">
           <i class="fa-solid fa-circle-xmark" style="color: #0d0d0d; cursor: pointer;"></i>
@@ -151,23 +163,19 @@
       <% end %>
     </div>
   </div>
-
-  <% if @venue.reviews.size > 0 %>
+</div>
+</div>
+<% if @venue.reviews.size > 0 %>
   <div class="container my-5 me-3">
     <h1 class="text-center"><%= @venue.reviews.size %> reviews for <%= @venue.name %></h1>
-
-    <div class="row row-cols-4 reviews-row">
+    <div class="row row-cols-4 ">
       <% @venue.reviews.each do |review| %>
-
         <div class="col p-5 shadow p-3 mb-5 bg-body rounded m-2 position-relative d-none"  style="height: 300px; width: 380px; border-radius: 8px;">
               <h4><%= review.user.first_name %> <%= review.user.last_name %></h4>
               <p class="p-3" style="height: 150px; "><%= review.text %></p>
 
             <button class="hiderev position-absolute top-0 end-0 btn btn-dark">X</button>
-          </div>
-
         </div>
-
         <div class="col p-5 shadow p-3 mb-5 bg-body rounded m-2 position-relative"  style="height: 300px; width: 380px; border-radius: 8px;">
             <h4><%= review.user.first_name%> <%= review.user.last_name %></h4>
             <h4 class="mb-2"><%=  "⭐" * review.rating%></h4>
@@ -176,17 +184,15 @@
               <% revUser = User.find(review.user_id) %>
               <small class="mt-3 position-absolute" style="color: darkblue; right:25px; bottom: 70px;"><%= revUser.first_name %> <%= revUser.last_name %></small>
             </p>
-
             <button class="viewrev position-absolute bottom-0 start-0 btn btn-dark">View review</button>
             <% if policy(review).destroy? %>
               <%= link_to '🗑️', "/reviews/#{review.id}", class: "text-decoration-none pb-4 position-absolute bottom-0 end-0 p-5", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
             <% end %>
           </div>
-        <% end %>
+      <% end %>
       </div>
     </div>
   <% end %>
-</div>
 <p class="arrow-back" style="width: 200px; height: 30px; font-size:30px;">
 
     <a href="/venues" class="pt-1" style="width: 30px; height: 30px; color: black;"><i class="fa-solid fa-arrow-left fa-2xl"></i></a>
@@ -223,12 +229,12 @@
   .map-container {
     position: absolute;
     top: 130px;
-    left: 130px;
+    left: 250px;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 400px;
-    height: 400px;
+    width: 500px;
+    height: 500px;
     border-radius: 50%;
     flex: 1.5;
     display: flex;
