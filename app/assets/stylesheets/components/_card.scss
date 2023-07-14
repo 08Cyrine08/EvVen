@@ -1,13 +1,11 @@
 .index-container {
-  margin-top: 20px;
-  margin-bottom: 20px;
-  max-width: 100%;
-  overflow: hidden;
+  position: relative;
 }
 
-.index-title {
-  font-family: 'Karla', sans-serif;
-  margin-top: 0;
+.index-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 30px;
 }
 
 .index-card {
@@ -60,6 +58,6 @@
 
 @media (max-width: 768px) {
   .index-card {
-    width: 100%;
+    height: auto;
   }
 }
