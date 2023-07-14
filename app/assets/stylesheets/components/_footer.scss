@@ -4,9 +4,15 @@
 }
 
 .footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #140057;
+  opacity: 0.8;
   bottom: 0;
-  height: 2em;
+  height: 6em;
   left: 0;
   position: relative;
   width: 100%;
+  color: white;
 }
